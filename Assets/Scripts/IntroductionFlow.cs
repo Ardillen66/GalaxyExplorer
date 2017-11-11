@@ -8,7 +8,7 @@ using UnityEngine.VR.WSA.Input;
 public class IntroductionFlow : Singleton<IntroductionFlow>
 {
     public GameObject Logo;
-    public float IntroSlateTime = 1.0f;
+    //public float IntroSlateTime = 1.0f;
     public float IntroLogoTime = 4.5f;
     public float MinTimeInForDialog = 2.0f;
     public float DialogExitTime = 2.0f;
@@ -20,12 +20,12 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
     public float SecondsOnGalaxy;
     public float SecondsPerLevel;
     public string IntroSound;
-    public InstructionSlate InstructionSlate;
+    //public InstructionSlate InstructionSlate;
 
     public AudioClip Title;
-    public AudioClip Description;
-    public AudioClip Goal;
-    public AudioClip Invitation;
+    //public AudioClip Description;
+    //public AudioClip Goal;
+    //public AudioClip Invitation;
     public AudioClip CenterEarth;
     public AudioClip EarthCentered;
     public AudioClip Earth;
@@ -41,9 +41,9 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
 
     public enum IntroductionState
     {
-        IntroductionStateAppDescription,
-        IntroductionStateDevelopers,
-        IntroductionStateCommunity,
+        //IntroductionStateAppDescription,
+        //IntroductionStateDevelopers,
+        //IntroductionStateCommunity,
         IntroductionStateSlateFadeout,
         IntroductionStateLogo,
         IntroductionStateLogoFadeout,
@@ -57,7 +57,8 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
         IntroductionStateComplete
     }
 
-    public IntroductionState currentState = IntroductionState.IntroductionStateAppDescription;
+    //public IntroductionState currentState = IntroductionState.IntroductionStateAppDescription;
+    public IntroductionState currentState = IntroductionState.IntroductionStateSlateFadeout;
 
     private float timeInState = 0.0f;
     private bool coreSystemsLoaded = false;
@@ -82,12 +83,12 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
 
         logoAnimator = Logo.GetComponent<Animator>();
 
-        if (InstructionSlate == null)
-        {
-            Debug.LogError("IntroductionFlow: No InstructionSlate defined to outline instructions for the viewer - unable to proceed");
-            Destroy(this);
-            return;
-        }
+        //if (InstructionSlate == null)
+        //{
+        //    Debug.LogError("IntroductionFlow: No InstructionSlate defined to outline instructions for the viewer - unable to proceed");
+        //    Destroy(this);
+        //    return;
+        //}
 
         ViewLoader.Instance.CoreSystemsLoaded += CoreSystemsLoaded;
 
@@ -117,15 +118,15 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
     {
         switch (currentState)
         {
-            case IntroductionState.IntroductionStateAppDescription:
-            case IntroductionState.IntroductionStateDevelopers:
-            case IntroductionState.IntroductionStateCommunity:
-                if (timeInState >= IntroSlateTime)
-                {
-                    AdvanceIntroduction();
-                }
+            //case IntroductionState.IntroductionStateAppDescription:
+            //case IntroductionState.IntroductionStateDevelopers:
+            //case IntroductionState.IntroductionStateCommunity:
+            //    if (timeInState >= IntroSlateTime)
+            //    {
+            //        AdvanceIntroduction();
+            //    }
 
-                break;
+            //    break;
                 
             case IntroductionState.IntroductionStateLogo:
                 if (timeInState >= IntroLogoTime)
@@ -245,11 +246,13 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
         MusicManager.Instance.FindSnapshotAndTransition(MusicManager.Instance.Welcome);
         VOManager.Instance.Stop(clearQueue: true);
         VOManager.Instance.PlayClip(Title);
-        VOManager.Instance.PlayClip(Description);
-        VOManager.Instance.PlayClip(Goal);
-        VOManager.Instance.PlayClip(Invitation);
+        //VOManager.Instance.PlayClip(Description);
+        //VOManager.Instance.PlayClip(Goal);
+        //VOManager.Instance.PlayClip(Invitation);
 
-        UpdateInstructions();
+        //UpdateInstructions();
+        //"Ahmed": Added instead of UpdateInstructions method to go directly to the logo without setting the instructionSlate script
+        AdvanceIntroduction();
     }
 
     private void OnTapped(InteractionSourceKind source, int tapCount, Ray headRay)
@@ -267,14 +270,14 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
                 AdvanceIntroduction();
                 break;
 
-            case IntroductionState.IntroductionStateAppDescription:
-            case IntroductionState.IntroductionStateDevelopers:
-            case IntroductionState.IntroductionStateCommunity:
-                // skip intro
-                currentState = IntroductionState.IntroductionStateCommunity;
-                VOManager.Instance.Stop(clearQueue: true);
-                AdvanceIntroduction();
-                break;
+            //case IntroductionState.IntroductionStateAppDescription:
+            //case IntroductionState.IntroductionStateDevelopers:
+            //case IntroductionState.IntroductionStateCommunity:
+            //    // skip intro
+            //    currentState = IntroductionState.IntroductionStateCommunity;
+            //    VOManager.Instance.Stop(clearQueue: true);
+            //    AdvanceIntroduction();
+            //    break;
         }
     }
 
@@ -286,7 +289,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
             switch (currentState)
             {
                 case IntroductionState.IntroductionStateSlateFadeout:
-                    InstructionSlate.gameObject.SetActive(false);
+                    //InstructionSlate.gameObject.SetActive(false);
 
                     Logo.gameObject.SetActive(true);
                     Tagalong tagalong = Logo.gameObject.GetComponent<Tagalong>();
@@ -336,7 +339,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
                 return;
             }
 
-            UpdateInstructions();
+            //UpdateInstructions();
             timeInState = 0.0f;
         }
     }
@@ -361,7 +364,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
         AdvanceIntroduction();
     }
 
-    private void UpdateInstructions()
+ /*   private void UpdateInstructions()
     {
         switch (currentState)
         {
@@ -393,7 +396,7 @@ public class IntroductionFlow : Singleton<IntroductionFlow>
                 InstructionSlate.Hide();
                 break;
         }
-    }
+    }*/
 
     private void PlayOneShot(AudioClip clip)
     {

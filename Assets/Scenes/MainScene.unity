@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &406970158
@@ -760,58 +777,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c605b06f45ecf14987ff56bee9f3afd, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1487868553 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11416018, guid: 409c7ee99a1059646956ecf7d39989b4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1614903096}
-  m_Script: {fileID: 11500000, guid: 4ed0b9b6b4b7c7e40b65e831039456db, type: 3}
---- !u!4 &1487868554 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-  m_PrefabInternal: {fileID: 1614903096}
---- !u!1001 &1614903096
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1750365916}
-    m_Modifications:
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 419046, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 409c7ee99a1059646956ecf7d39989b4, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1750365914
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +806,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logo: {fileID: 2113312816}
-  IntroSlateTime: 6
   IntroLogoTime: 4.5
   MinTimeInForDialog: 2
   DialogExitTime: 1
@@ -852,11 +816,7 @@ MonoBehaviour:
   SecondsOnGalaxy: 3
   SecondsPerLevel: 4
   IntroSound: galaxy_explorer_logo
-  InstructionSlate: {fileID: 1487868553}
-  Title: {fileID: 8300000, guid: 45bf8e25d36572f44b9d1b5673b52b9f, type: 3}
-  Description: {fileID: 8300000, guid: baa625ff82bb86c47b6f0d3e94218005, type: 3}
-  Goal: {fileID: 8300000, guid: 043fe617e5423af42a6613c606b0b43c, type: 3}
-  Invitation: {fileID: 8300000, guid: ddaadfbfcee2de64cafe2448f1db3881, type: 3}
+  Title: {fileID: 8300000, guid: 2d9e917cfca5e234e964e1fa0a63b221, type: 3}
   CenterEarth: {fileID: 8300000, guid: ae013e49932759c4dbbfffdad9051c4c, type: 3}
   EarthCentered: {fileID: 8300000, guid: bf49a870c7c52eb49903cc69416ca041, type: 3}
   Earth: {fileID: 8300000, guid: 59c0178a1a147d54b8839b225c406cef, type: 3}
@@ -875,7 +835,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1487868554}
   - {fileID: 2113312817}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1020,6 +979,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2009331810
 MeshFilter:
@@ -1058,7 +1018,7 @@ Transform:
   - {fileID: 2009331808}
   - {fileID: 1398878323}
   m_Father: {fileID: 1750365916}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2113312821
 BoxCollider:
