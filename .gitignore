@@ -68,3 +68,6 @@ UWP/**
 
 
 /Assets/UI/POIs/POIs_processed.log.meta
+
+/Assets/Vuforia/
+/Assets/Plugins/
