@@ -12,14 +12,15 @@ public enum MenuType
 public class Menu : GazeSelectionTarget, IFadeTarget
 {
     private static bool hasGaze = false;
-    //TODO get children and store them in menu options
-    private Dictionary<string, MenuOption> options = new Dictionary<string, MenuOption>();
 
-    public GameObject TooltipObject;
+    public GameObject NameObject;
 
     public Material DefaultMaterial; // When not looking at it
+    public Material DefaultName;
+    // TODO cache default attributes
     private Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
     public Material HighlightMaterial; // When looking at it
+    public Material HighlightName;
     private Dictionary<string, float> highlightMaterialDefaults = new Dictionary<string, float>();
     public Material SelectedMaterial; // When pointing at it
     private Dictionary<string, float> selectedMaterialDefaults = new Dictionary<string, float>();
@@ -27,6 +28,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     
     private bool selected = false;
     private MeshRenderer meshRenderer;
+    private MeshRenderer nameRenderer;
 
     private float currentOpacity = 1;
 
@@ -81,17 +83,64 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     private void Awake()
     {
-        //TODO cache material attributes
+        if (DefaultMaterial == null)
+        {
+            Debug.LogWarning(gameObject.name + " Menu has no active material.");
+        }
+        else
+        {
+            CacheMaterialDefaultAttributes(ref defaultMaterialDefaults, DefaultMaterial);
+        }
+
+        if (HighlightMaterial == null)
+        {
+            Debug.LogWarning(gameObject.name + " Menu has no highlight material.");
+        }
+        else
+        {
+            CacheMaterialDefaultAttributes(ref highlightMaterialDefaults, HighlightMaterial);
+        }
+
+        if (SelectedMaterial == null)
+        {
+            Debug.LogWarning(gameObject.name + " Menu has no selected material.");
+        }
+        else
+        {
+            CacheMaterialDefaultAttributes(ref selectedMaterialDefaults, SelectedMaterial);
+        }
+
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+
+        if (meshRenderer == null)
+        {
+            Debug.LogWarning(gameObject.name + " Menu has no renderer.");
+        }
+
+
+        if(NameObject == null)
+        {
+            Debug.LogWarning(gameObject.name + "Menu has nu associated name object");
+        }
+
+        nameRenderer = NameObject.GetComponent<MeshRenderer>();
+        
     }
 
     private void Start()
     {
-        //TODO hook up to player input manager
+        //TODO startup methods here
+        
     }
 
     private void OnDestroy()
     {
-        // TODO unhook from input manager and clear cahce
+        // TODO eventual additional cleanup
+        
+        //clear shader cahce
+        RestoreMaterialDefaultAttributes(ref defaultMaterialDefaults, DefaultMaterial);
+        RestoreMaterialDefaultAttributes(ref highlightMaterialDefaults, HighlightMaterial);
+        RestoreMaterialDefaultAttributes(ref selectedMaterialDefaults, SelectedMaterial);
     }
 
     /**
@@ -99,12 +148,24 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      */
     public void ShowPreview()
     {
-
+        if (!ToolManager.Instance.IsLocked)
+        {
+            //TODO add sound
+            Debug.Log("Showing preview");
+            meshRenderer.material = HighlightMaterial;
+            nameRenderer.material = HighlightName;
+            
+        }
     }
 
     public void HidePreview()
     {
-
+        if (!ToolManager.Instance.IsLocked)
+        {
+            //TODO add sound
+            meshRenderer.material = DefaultMaterial;
+            nameRenderer.material = DefaultName;
+        }
     }
 
     /**
@@ -112,12 +173,24 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      **/
     public void ShowMenu()
     {
+        if (!ToolManager.Instance.IsLocked)
+        {
+            //TODO add sound and activate children
+            meshRenderer.material = SelectedMaterial;
+            nameRenderer.material = HighlightName;
 
+        }
     }
 
     public void HideMenu()
     {
+        if (!ToolManager.Instance.IsLocked)
+        {
+            //TODO add sound and deactivate children
+            meshRenderer.material = DefaultMaterial;
+            nameRenderer.material = DefaultName;
 
+        }
     }
 
     //TODO delegate action to currently selected tool/button
@@ -128,38 +201,42 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override void OnGazeSelect()
     {
-        //TODO show related voice commands and menu preview (same?)
-        base.OnGazeSelect();
+        Debug.Log("Gaze detected");
+        hasGaze = true;
+        ShowPreview();
     }
 
     public override void OnGazeDeselect()
     {
-        //TODO restore default state
-        base.OnGazeDeselect();
+        hasGaze = false;
+        HidePreview();
     }
 
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO: Show menu buttons when holding select
-        return base.OnNavigationStarted(source, relativePosition, ray);
+        //TODO: Show menu buttons when holding select, potential checks to return true when correctly handeled
+        ShowMenu();
+        return true;
     }
 
     public override bool OnNavigationUpdated(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         //TODO: Higlight currently selected option
-        return base.OnNavigationUpdated(source, relativePosition, ray);
+        return true;
     }
 
     public override bool OnNavigationCompleted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO: Select currently higlighted option
-        return base.OnNavigationCompleted(source, relativePosition, ray);
+        //TODO: Select currently higlighted option and activate callback
+        HideMenu();
+        return true;
     }
 
     public override bool OnNavigationCanceled(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         //TODO restore default/highlight state (dependent on gaze)
-        return base.OnNavigationCanceled(source, relativePosition, ray);
+        HideMenu();
+        return true;
     }
 
     protected override void VoiceCommandCallback(string command)
