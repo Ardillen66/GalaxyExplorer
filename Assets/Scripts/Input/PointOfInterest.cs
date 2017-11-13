@@ -66,7 +66,6 @@ public class PointOfInterest : GazeSelectionTarget
 
     public Material MaterialToFade;
     private float originalTransitionAlpha;
-
     protected AudioSource audioSource;
 
     // these are only used if there is no indicator line to determine the world position of the point of
@@ -75,6 +74,9 @@ public class PointOfInterest : GazeSelectionTarget
     private Vector3 targetPosition;
     private Vector3 targetOffset;
     protected bool initialized = false;
+    //Ahmed: To control the logic of select and keep & deselect
+    public bool isSelected;
+
 
     private void Awake()
     {
@@ -130,6 +132,7 @@ public class PointOfInterest : GazeSelectionTarget
                 targetOffset = new Vector3(0.0f, transform.localPosition.y, 0.0f);
             }
         }
+        isSelected = false;
 
         HideDescription();
     }
@@ -209,7 +212,10 @@ public class PointOfInterest : GazeSelectionTarget
 
     public override void OnGazeSelect()
     {
-        ShowDescription();
+        if (!isSelected)
+        {
+            ShowDescription();
+        }
 
         if (!string.IsNullOrEmpty(HighlightSound))
         {
@@ -219,23 +225,37 @@ public class PointOfInterest : GazeSelectionTarget
 
     public override void OnGazeDeselect()
     {
-        HideDescription();
+        if (!isSelected)
+        {
+            HideDescription();
+        }
+
     }
 
     public override bool OnTapped(InteractionSourceKind source, int tapCount, Ray ray)
     {
-        if (audioSource)
+        if (!isSelected)
         {
-            audioSource.PlayOneShot(AirtapSound);
+            
+            isSelected = true;
+            return false;
+        }
+        else
+        {
+            if (audioSource)
+            {
+                audioSource.PlayOneShot(AirtapSound);
+            }
+
+            if (CardPOIManager.Instance != null)
+            {
+                CardPOIManager.Instance.HideAllCards();
+            }
+            isSelected = false;
+            GoToScene();
+            return true;
         }
 
-        if (CardPOIManager.Instance != null)
-        {
-            CardPOIManager.Instance.HideAllCards();
-        }
-
-        GoToScene();
-        return true;
     }
 
     [ContextMenu("GoToScene")]

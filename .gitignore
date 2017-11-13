@@ -9,7 +9,7 @@ Library/
 Assets/AssetStoreTools*
 project.json
 project.lock.json
-
+UpgradeLog.htm 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
