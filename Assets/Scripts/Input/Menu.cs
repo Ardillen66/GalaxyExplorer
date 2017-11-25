@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.VR.WSA.Input;
 using System.Collections.Generic;
+using System;
 
 public enum MenuType
 {
@@ -13,26 +14,35 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 {
     private static bool hasGaze = false;
 
+    private static bool IsNavigating = false;
+
+    // Options for a menu will, be kept in the list and called accordingly
+    private List<MenuOption> MenuOptions = new List<MenuOption>();
+    private MenuOption SelectedOption;
+
+    // Values for the name gameobject
     public GameObject NameObject;
+    private TextMesh nameRenderer;
+    public Color DefaultNameColor;
+    public Color HighlightNameColor;
 
     public Material DefaultMaterial; // When not looking at it
-    public Material DefaultName;
     // TODO cache default attributes
     private Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
     public Material HighlightMaterial; // When looking at it
-    public Material HighlightName;
     private Dictionary<string, float> highlightMaterialDefaults = new Dictionary<string, float>();
     public Material SelectedMaterial; // When pointing at it
     private Dictionary<string, float> selectedMaterialDefaults = new Dictionary<string, float>();
+
     public MenuType type;
     
     private bool selected = false;
     private MeshRenderer meshRenderer;
-    private MeshRenderer nameRenderer;
+    
 
     private float currentOpacity = 1;
 
-    // TODO check if we can do it like this?
+    // TODO check if we can do it like this? ie: Hook up materials to provided fader
     public float Opacity
     {
         get
@@ -123,12 +133,30 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             Debug.LogWarning(gameObject.name + "Menu has nu associated name object");
         }
 
-        nameRenderer = NameObject.GetComponent<MeshRenderer>();
+        nameRenderer = NameObject.GetComponent<TextMesh>();
+
+        if(DefaultNameColor == null)
+        {
+            Debug.LogWarning(gameObject.name + "Menu has no default color for the name");
+        }
+        else
+        {
+            HighlightNameColor = new Color(DefaultNameColor.r, DefaultNameColor.g, DefaultNameColor.b); // Same color, but alpha = 1
+        }
         
     }
 
     private void Start()
     {
+        // Get all options assigned from unity
+        MenuOption[] options = GetComponentsInChildren<MenuOption>(true);
+        VoiceCommands = new string[options.Length];
+        int idx = 0; //We need to keep track of an array index to add voicecommands
+        foreach(MenuOption option in options)
+        {
+            MenuOptions.Add(option);
+            VoiceCommands[idx++] = option.VoiceCommand;
+        }
         //TODO startup methods here
         
     }
@@ -151,9 +179,8 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         if (!ToolManager.Instance.IsLocked)
         {
             //TODO add sound
-            Debug.Log("Showing preview");
             meshRenderer.material = HighlightMaterial;
-            nameRenderer.material = HighlightName;
+            nameRenderer.color = HighlightNameColor;
             
         }
     }
@@ -164,7 +191,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             //TODO add sound
             meshRenderer.material = DefaultMaterial;
-            nameRenderer.material = DefaultName;
+            nameRenderer.color = DefaultNameColor;
         }
     }
 
@@ -175,9 +202,8 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (!ToolManager.Instance.IsLocked)
         {
-            //TODO add sound and activate children
+            //TODO add sound and activate children, also think about what to do with menu name component
             meshRenderer.material = SelectedMaterial;
-            nameRenderer.material = HighlightName;
 
         }
     }
@@ -188,7 +214,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             //TODO add sound and deactivate children
             meshRenderer.material = DefaultMaterial;
-            nameRenderer.material = DefaultName;
+            nameRenderer.color = DefaultNameColor;
 
         }
     }
@@ -201,7 +227,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override void OnGazeSelect()
     {
-        Debug.Log("Gaze detected");
         hasGaze = true;
         ShowPreview();
     }
@@ -212,9 +237,45 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         HidePreview();
     }
 
+    /**
+     * Extract the index from a position if we order options in a 3x3 grid as such:
+     * 0 is the startingPositoion, set to be (0,0,0) when a Navigation gesture starts
+     * -------
+     * |1|2|3|
+     * -------
+     * |8|0|4|
+     * -------
+     * |7|6|5|
+     * -------
+     * */
+    private int OptionIndex(Vector3 position)
+    {
+        float xPos = position.x;
+        float yPos = position.y;
+        if(xPos < -0.25)
+        {
+            if (yPos > 0.25) return 1;
+            else if (yPos < -0.25) return 7;
+            else return 8;
+        }
+        else if(xPos > 0.25)
+        {
+            if (yPos > 0.25) return 3;
+            else if (yPos < -0.25) return 5;
+            else return 4;
+        }
+        else
+        {
+            if (yPos > 0.25) return 2;
+            else if (yPos < -0.25) return 6;
+            else return 0;
+        }
+    }
+
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         //TODO: Show menu buttons when holding select, potential checks to return true when correctly handeled
+        IsNavigating = true;
         ShowMenu();
         return true;
     }
@@ -222,19 +283,29 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     public override bool OnNavigationUpdated(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         //TODO: Higlight currently selected option
+        SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
+        SelectedOption.Highlight();
         return true;
     }
 
     public override bool OnNavigationCompleted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         //TODO: Select currently higlighted option and activate callback
+        if (SelectedOption == null)
+        {
+            SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
+        }
+        SelectedOption.OptionAction(); // Perform action from this option
+        IsNavigating = false;
+        SelectedOption = null;
         HideMenu();
         return true;
     }
 
     public override bool OnNavigationCanceled(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO restore default/highlight state (dependent on gaze)
+        IsNavigating = false;
+        SelectedOption = null;
         HideMenu();
         return true;
     }
@@ -243,7 +314,13 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (!TransitionManager.Instance.InTransition)
         {
-            OptionAction();
+            foreach(MenuOption opt in MenuOptions)
+            {
+                if (command.Equals(opt.VoiceCommand))
+                {
+                    opt.OptionAction();
+                }
+            }
         }
     }
 
