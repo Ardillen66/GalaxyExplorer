@@ -30,6 +30,7 @@ public class ToolPanel : MonoBehaviour
         }
     }
 
+    //TODO change workings of offsets. Can tools still be hidde? How is this handled?
     public Vector3 ShownViewOffset;
     public Vector3 HiddenViewOffset;
     public float RotationDeadZoneAngle = 5.0f;

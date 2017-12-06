@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: UI_Nav_Preview
-  m_Shader: {fileID: 10760, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 675fc53c6fee72545b38d54344522cac, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -42,8 +42,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainBump:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 74fad945572ff13469c98858bc09ca53, type: 3}
+        m_Texture: {fileID: 2800000, guid: d86b2ba1d888a174397d9b080593c69b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -62,13 +70,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _ColorMask: 15
     - _Cutoff: 0.5
     - _DSTBLEND: 0
     - _DetailNormalMapScale: 1
+    - _Distance: 3
     - _DstBlend: 0
+    - _Exposure: 1
+    - _Focus: -100
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -77,10 +96,13 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Ref_mult: 1
+    - _Rotation: 0
     - _SRCBLEND: 1
+    - _Scale: 0.1
     - _SheenFreq: 6
     - _SheenOffset: 1
     - _Sheen_Falloff: 3
+    - _Shininess: 0.2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -97,9 +119,20 @@ Material:
     - _ZWrite: 1
     - _gradOverlay: 0.2
     m_Colors:
+    - _AccentColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _COLOR_A: {r: 0.9419875, g: 0.9447717, b: 0.9632353, a: 1}
     - _COLOR_B: {r: 0.2958477, g: 0.3269538, b: 0.3529412, a: 1}
-    - _Color: {r: 0.117593005, g: 0.1923995, b: 0.5514706, a: 1}
+    - _Color: {r: 0.99978375, g: 1, b: 1, a: 1}
+    - _DotColor: {r: 1, g: 1, b: 1, a: 1}
+    - _DotParams: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Specular: {r: 0, g: 0, b: 0, a: 0}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GradiantParams: {r: 0.5, g: 0.5, b: 1, a: 1}
+    - _Scale: {r: 10, g: 10, b: 0, a: 0}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Specular: {r: 0.4852941, g: 0.0999135, b: 0.0999135, a: 0.466}
+    - _TextColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Threshold: {r: 0.45, g: 0.5, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}

@@ -94,4 +94,10 @@ public abstract class MenuOption : MonoBehaviour
         meshRenderer.material = HightlightMaterial;
         Selected = true;
     }
+
+    public void RemoveHighlight()
+    {
+        meshRenderer.material = DefaultMaterial;
+        Selected = false;
+    }
 }

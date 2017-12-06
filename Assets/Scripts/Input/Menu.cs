@@ -29,8 +29,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     public Material DefaultMaterial; // When not looking at it
     // TODO cache default attributes
     private Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
-    public Material HighlightMaterial; // When looking at it
-    private Dictionary<string, float> highlightMaterialDefaults = new Dictionary<string, float>();
+    private GameObject previewText;
     public Material SelectedMaterial; // When pointing at it
     private Dictionary<string, float> selectedMaterialDefaults = new Dictionary<string, float>();
 
@@ -55,7 +54,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             currentOpacity = value;
 
             ApplyOpacity(DefaultMaterial, value);
-            ApplyOpacity(HighlightMaterial, value);
             ApplyOpacity(SelectedMaterial, value);
         }
     }
@@ -100,15 +98,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         else
         {
             CacheMaterialDefaultAttributes(ref defaultMaterialDefaults, DefaultMaterial);
-        }
-
-        if (HighlightMaterial == null)
-        {
-            Debug.LogWarning(gameObject.name + " Menu has no highlight material.");
-        }
-        else
-        {
-            CacheMaterialDefaultAttributes(ref highlightMaterialDefaults, HighlightMaterial);
         }
 
         if (SelectedMaterial == null)
@@ -157,8 +146,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             MenuOptions.Add(option);
             VoiceCommands[idx++] = option.VoiceCommand;
         }
+        previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
+        previewText.SetActive(false); // Ensure the preview is hidden by default
         //TODO startup methods here
-        
+
     }
 
     private void OnDestroy()
@@ -167,7 +158,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         
         //clear shader cahce
         RestoreMaterialDefaultAttributes(ref defaultMaterialDefaults, DefaultMaterial);
-        RestoreMaterialDefaultAttributes(ref highlightMaterialDefaults, HighlightMaterial);
         RestoreMaterialDefaultAttributes(ref selectedMaterialDefaults, SelectedMaterial);
     }
 
@@ -179,7 +169,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         if (!ToolManager.Instance.IsLocked)
         {
             //TODO add sound
-            meshRenderer.material = HighlightMaterial;
+            previewText.SetActive(true);
             nameRenderer.color = HighlightNameColor;
             
         }
@@ -190,7 +180,8 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         if (!ToolManager.Instance.IsLocked)
         {
             //TODO add sound
-            meshRenderer.material = DefaultMaterial;
+            //meshRenderer.material = DefaultMaterial;
+            previewText.SetActive(false);
             nameRenderer.color = DefaultNameColor;
         }
     }
@@ -202,9 +193,12 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (!ToolManager.Instance.IsLocked)
         {
-            //TODO add sound and activate children, also think about what to do with menu name component
+            //TODO add sound
             meshRenderer.material = SelectedMaterial;
-
+            foreach(MenuOption opt in MenuOptions)
+            {
+                opt.ShowOption();
+            }
         }
     }
 
@@ -212,17 +206,14 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (!ToolManager.Instance.IsLocked)
         {
-            //TODO add sound and deactivate children
+            //TODO add sound
             meshRenderer.material = DefaultMaterial;
             nameRenderer.color = DefaultNameColor;
-
+            foreach(MenuOption opt in MenuOptions)
+            {
+                opt.HideOption();
+            }
         }
-    }
-
-    //TODO delegate action to currently selected tool/button
-    public void OptionAction()
-    {
-
     }
 
     public override void OnGazeSelect()
@@ -250,6 +241,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      * */
     private int OptionIndex(Vector3 position)
     {
+        //TODO review this to account for unused positions and return selected option rather than a position
         float xPos = position.x;
         float yPos = position.y;
         if(xPos < -0.25)
@@ -274,40 +266,64 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO: Show menu buttons when holding select, potential checks to return true when correctly handeled
-        IsNavigating = true;
-        ShowMenu();
-        return true;
+        if (hasGaze)
+        {
+            HidePreview(); // hide the preview menu wihch should be active when gaze selected
+            IsNavigating = true;
+            ShowMenu();
+            return true;
+        }
+        return false;
     }
 
     public override bool OnNavigationUpdated(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO: Higlight currently selected option
-        SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
-        SelectedOption.Highlight();
-        return true;
+        if (IsNavigating)
+        {
+            if(SelectedOption != null)
+            {
+                SelectedOption.RemoveHighlight();
+            }
+            SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
+            SelectedOption.Highlight();
+            return true;
+        }
+        return false;
     }
 
     public override bool OnNavigationCompleted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        //TODO: Select currently higlighted option and activate callback
-        if (SelectedOption == null)
+        if (IsNavigating)
         {
-            SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
+            //Select currently higlighted option and activate callback
+            if (SelectedOption == null)
+            {
+                SelectedOption = MenuOptions[this.OptionIndex(relativePosition)]; //TODO improve option management and what to do when still no selected option
+            }
+            SelectedOption.OptionAction(); // Perform action from this option
+            SelectedOption.RemoveHighlight();
+            IsNavigating = false;
+            SelectedOption = null;
+            HideMenu();
+            return true;
         }
-        SelectedOption.OptionAction(); // Perform action from this option
-        IsNavigating = false;
-        SelectedOption = null;
-        HideMenu();
-        return true;
+        return false;
     }
 
     public override bool OnNavigationCanceled(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
-        IsNavigating = false;
-        SelectedOption = null;
-        HideMenu();
-        return true;
+        if (IsNavigating)
+        {
+            if(SelectedOption != null)
+            {
+                SelectedOption.RemoveHighlight();
+            }
+            IsNavigating = false;
+            SelectedOption = null;
+            HideMenu();
+            return true;
+        }
+        return false;
     }
 
     protected override void VoiceCommandCallback(string command)

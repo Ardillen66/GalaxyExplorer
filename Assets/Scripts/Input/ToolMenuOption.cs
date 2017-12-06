@@ -14,10 +14,10 @@ public enum ToolOptionType
 
 public class ToolMenuOption : MenuOption
 {
-    ToolOptionType toolType;
+    public ToolOptionType toolType;
 
     //Reuse tool script
-    Tool tool;
+    public Tool tool;
 
     private void Awake()
     {
