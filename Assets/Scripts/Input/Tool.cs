@@ -10,7 +10,8 @@ public enum ToolType
     Rotate,
     Zoom,
     Reset,
-    About
+    About,
+    None //Extra type used to
 }
 
 public class Tool : GazeSelectionTarget, IFadeTarget

@@ -12,7 +12,8 @@ public enum ButtonType
     Back,
     Hide,
     Show,
-    About
+    About,
+    None //Extra type added for error handling
 }
 
 public class Button : GazeSelectionTarget, IFadeTarget

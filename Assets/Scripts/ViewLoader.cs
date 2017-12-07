@@ -211,7 +211,7 @@ public class ViewLoader : Singleton<ViewLoader>
         if (forwardNavigation && CurrentView != null && !IntroductionFlow.Instance)
         {
             viewBackStack.Push(CurrentView);
-            ToolManager.Instance.ShowBackButton();
+            //ToolManager.Instance.ShowBackButton();
         }
 
         StartCoroutine(LoadViewAsyncInternal(viewName, sceneLoadedCallback));

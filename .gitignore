@@ -66,6 +66,8 @@ UWP/**
 !UWP/GalaxyExplorer/Assets/Wide310x150Logo.scale-200.png
 !UWP/GE_POIMaker/*.cs
 
+!Assets/Prefabs/Dashboard/Dashboard.obj
+
 
 /Assets/UI/POIs/POIs_processed.log.meta
 
