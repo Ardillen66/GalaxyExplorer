@@ -71,8 +71,7 @@ public class OrbitScalePointOfInterest : PointOfInterest
 
         IsAnimating = false;
     }
-
-    public override bool OnTapped(InteractionSourceKind source, int tapCount, Ray ray)
+    public void callOrbitSelect()
     {
         if (audioSource)
         {
@@ -114,7 +113,7 @@ public class OrbitScalePointOfInterest : PointOfInterest
                 GameObject tempDescription = Description;
                 Description = AlternateDescription;
                 AlternateDescription = tempDescription;
-                
+
                 descriptionAnimator = Description.GetComponent<Animator>();
                 if (descriptionAnimator != null)
                 {
@@ -123,6 +122,10 @@ public class OrbitScalePointOfInterest : PointOfInterest
                 }
             }
         }
+    }
+    public override bool OnTapped(InteractionSourceKind source, int tapCount, Ray ray)
+    {
+        this.callOrbitSelect();
 
         return true;
     }

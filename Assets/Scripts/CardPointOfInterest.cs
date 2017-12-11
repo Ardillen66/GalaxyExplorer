@@ -130,7 +130,14 @@ public class CardPointOfInterest : PointOfInterest
 
     public override bool OnTapped(InteractionSourceKind source, int tapCount, Ray ray)
     {
+        this.cardPOIselect();
+
+        return true;
+    }
+    public void cardPOIselect()
+    {
         // if a card is already up and this was tapped before selection could be faded out, then hide all of the cards (deselection)
+
         if (!CardPOIManager.Instance.CanTapCard)
         {
             CardPOIManager.Instance.HideAllCards();
@@ -153,8 +160,6 @@ public class CardPointOfInterest : PointOfInterest
                 }
             }
         }
-
-        return true;
     }
 
     public void HideCard()

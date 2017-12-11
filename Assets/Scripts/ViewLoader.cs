@@ -144,6 +144,7 @@ public class ViewLoader : Singleton<ViewLoader>
         if (viewBackStack.Count > 0 && !TransitionManager.Instance.InTransition)
         {
             string viewToLoad = viewBackStack.Pop();
+            Debug.Log(viewToLoad);
 
             if (!string.IsNullOrEmpty(viewToLoad))
             {
