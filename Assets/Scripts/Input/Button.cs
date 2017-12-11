@@ -236,10 +236,10 @@ public class Button : GazeSelectionTarget, IFadeTarget
                 cubeToMove.TogglePinnedState();
                 break;
 
-            case ButtonType.Show:
-            case ButtonType.Hide:
-                ToolManager.Instance.ToggleTools();
-                break;
+            //case ButtonType.Show:
+            //case ButtonType.Hide:
+            //    ToolManager.Instance.ToggleTools();
+            //    break;
         }
     }
 

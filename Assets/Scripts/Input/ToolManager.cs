@@ -7,9 +7,10 @@ using UnityEngine;
 public class ToolManager : Singleton<ToolManager>
 {
     public Tool SelectedTool = null;
-    public GameObject BackButton;
-    public GameObject ShowButton;
-    public GameObject HideButton;
+    // Legacy objects from old UI
+    //public GameObject BackButton;
+    //public GameObject ShowButton;
+    //public GameObject HideButton;
     public float TargetMinZoomSize = 0.15f;
     public float LargestZoom = 3.0f;
 
@@ -67,8 +68,8 @@ public class ToolManager : Singleton<ToolManager>
             selectionTarget.RegisterVoiceCommands();
         }
 
-        ShowButton.SetActive(false);
-        BackButton.SetActive(false);
+        //ShowButton.SetActive(false);
+        //BackButton.SetActive(false);
         toolSounds.gameObject.SetActive(false);
     }
 
@@ -179,41 +180,42 @@ public class ToolManager : Singleton<ToolManager>
         return false;
     }
 
-    public void LowerTools()
-    {
-        panel.IsLowered = true;
+    // Legacy methods that are no longer used
+    //public void LowerTools()
+    //{
+    //    panel.IsLowered = true;
 
-        if (ShowButton && HideButton)
-        {
-            ToolSounds.Instance.PlayMoveToolsDownSound();
-            ShowButton.SetActive(true);
-            HideButton.SetActive(false);
-        }
-    }
+    //    //if (ShowButton && HideButton)
+    //    //{
+    //    //    ToolSounds.Instance.PlayMoveToolsDownSound();
+    //    //    ShowButton.SetActive(true);
+    //    //    HideButton.SetActive(false);
+    //    //}
+    //}
 
-    public void RaiseTools()
-    {
-        panel.IsLowered = false;
+    //public void RaiseTools()
+    //{
+    //    panel.IsLowered = false;
 
-        if (ShowButton && HideButton)
-        {
-            ToolSounds.Instance.PlayMoveToolsUpSound();
-            ShowButton.SetActive(false);
-            HideButton.SetActive(true);
-        }
-    }
+    //    if (ShowButton && HideButton)
+    //    {
+    //        ToolSounds.Instance.PlayMoveToolsUpSound();
+    //        ShowButton.SetActive(false);
+    //        HideButton.SetActive(true);
+    //    }
+    //}
 
-    public void ToggleTools()
-    {
-        if (panel.IsLowered)
-        {
-            RaiseTools();
-        }
-        else
-        {
-            LowerTools();
-        }
-    }
+    //public void ToggleTools()
+    //{
+    //    if (panel.IsLowered)
+    //    {
+    //        RaiseTools();
+    //    }
+    //    else
+    //    {
+    //        LowerTools();
+    //    }
+    //}
 
     [ContextMenu("Hide Tools")]
     public void HideTools()
@@ -242,29 +244,29 @@ public class ToolManager : Singleton<ToolManager>
         yield return StartCoroutine(panel.FadeIn());
     }
 
-    public void ShowBackButton()
-    {
-        if (ToolManager.BackButtonVisibilityChangeRequested != null)
-        {
-            ToolManager.BackButtonVisibilityChangeRequested(visible: true);
-        }
-        else if (BackButton)
-        {
-            BackButton.SetActive(true);
-        }
-    }
+    //public void ShowBackButton()
+    //{
+    //    if (ToolManager.BackButtonVisibilityChangeRequested != null)
+    //    {
+    //        ToolManager.BackButtonVisibilityChangeRequested(visible: true);
+    //    }
+    //    else if (BackButton)
+    //    {
+    //        BackButton.SetActive(true);
+    //    }
+    //}
 
-    public void HideBackButton()
-    {
-        if (ToolManager.BackButtonVisibilityChangeRequested != null)
-        {
-            ToolManager.BackButtonVisibilityChangeRequested(visible: false);
-        }
-        else if (BackButton)
-        {
-            BackButton.SetActive(false);
-        }
-    }
+    //public void HideBackButton()
+    //{
+    //    if (ToolManager.BackButtonVisibilityChangeRequested != null)
+    //    {
+    //        ToolManager.BackButtonVisibilityChangeRequested(visible: false);
+    //    }
+    //    else if (BackButton)
+    //    {
+    //        BackButton.SetActive(false);
+    //    }
+    //}
 
     public delegate void ButtonVisibilityRequest(bool visible);
     public static event ButtonVisibilityRequest BackButtonVisibilityChangeRequested;

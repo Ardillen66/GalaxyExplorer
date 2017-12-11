@@ -17,8 +17,11 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     private static bool IsNavigating = false;
 
     // Options for a menu will, be kept in the list and called accordingly
-    private List<MenuOption> MenuOptions = new List<MenuOption>();
+    // private List<MenuOption> MenuOptions = new List<MenuOption>();
     private MenuOption SelectedOption;
+
+    // Cache the bounds of every Menu Option
+    private Dictionary<Bounds, MenuOption> MenuOptions = new Dictionary<Bounds, MenuOption>();
 
     // Values for the name gameobject
     public GameObject NameObject;
@@ -27,7 +30,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     public Color HighlightNameColor;
 
     public Material DefaultMaterial; // When not looking at it
-    // TODO cache default attributes
     private Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
     private GameObject previewText;
     public Material SelectedMaterial; // When pointing at it
@@ -38,10 +40,9 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     private bool selected = false;
     private MeshRenderer meshRenderer;
     
-
+    // Fade target attributes. Code Recycled from Tool/Button equivalents
     private float currentOpacity = 1;
-
-    // TODO check if we can do it like this? ie: Hook up materials to provided fader
+    
     public float Opacity
     {
         get
@@ -86,8 +87,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         mat.SetInt("_DSTBLEND", (int)dict["_DSTBLEND"]);
         mat.SetInt("_ZWRITE", (int)dict["_ZWRITE"]);
     }
-
-    //Until here
+    
 
     private void Awake()
     {
@@ -143,7 +143,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         int idx = 0; //We need to keep track of an array index to add voicecommands
         foreach(MenuOption option in options)
         {
-            MenuOptions.Add(option);
+            MenuOptions.Add(option.GetBounds(), option);
             VoiceCommands[idx++] = option.VoiceCommand;
         }
         previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
@@ -195,7 +195,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             //TODO add sound
             meshRenderer.material = SelectedMaterial;
-            foreach(MenuOption opt in MenuOptions)
+            foreach(MenuOption opt in MenuOptions.Values)
             {
                 opt.ShowOption();
             }
@@ -209,7 +209,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             //TODO add sound
             meshRenderer.material = DefaultMaterial;
             nameRenderer.color = DefaultNameColor;
-            foreach(MenuOption opt in MenuOptions)
+            foreach(MenuOption opt in MenuOptions.Values)
             {
                 opt.HideOption();
             }
@@ -239,30 +239,30 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      * |7|6|5|
      * -------
      * */
-    private int OptionIndex(Vector3 position)
-    {
-        //TODO review this to account for unused positions and return selected option rather than a position
-        float xPos = position.x;
-        float yPos = position.y;
-        if(xPos < -0.25)
-        {
-            if (yPos > 0.25) return 1;
-            else if (yPos < -0.25) return 7;
-            else return 8;
-        }
-        else if(xPos > 0.25)
-        {
-            if (yPos > 0.25) return 3;
-            else if (yPos < -0.25) return 5;
-            else return 4;
-        }
-        else
-        {
-            if (yPos > 0.25) return 2;
-            else if (yPos < -0.25) return 6;
-            else return 0;
-        }
-    }
+    //private int OptionIndex(Vector3 position)
+    //{
+    //    //TODO review this to account for unused positions and return selected option rather than a position
+    //    float xPos = position.x;
+    //    float yPos = position.y;
+    //    if(xPos < -0.25)
+    //    {
+    //        if (yPos > 0.25) return 1;
+    //        else if (yPos < -0.25) return 7;
+    //        else return 8;
+    //    }
+    //    else if(xPos > 0.25)
+    //    {
+    //        if (yPos > 0.25) return 3;
+    //        else if (yPos < -0.25) return 5;
+    //        else return 4;
+    //    }
+    //    else
+    //    {
+    //        if (yPos > 0.25) return 2;
+    //        else if (yPos < -0.25) return 6;
+    //        else return 0;
+    //    }
+    //}
 
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
@@ -284,7 +284,8 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             {
                 SelectedOption.RemoveHighlight();
             }
-            SelectedOption = MenuOptions[this.OptionIndex(relativePosition)];
+            //TODO retrieve option that contains relativePosition in its bounds
+            SelectedOption = MenuOptions.;
             SelectedOption.Highlight();
             return true;
         }

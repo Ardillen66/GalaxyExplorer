@@ -35,6 +35,7 @@ public abstract class MenuOption : MonoBehaviour
     }
 
     public string VoiceCommand;// { get; internal set; }
+    private Bounds objectBounds;
 
     private void ApplyOpacity(Material material, float value)
     {
@@ -69,6 +70,15 @@ public abstract class MenuOption : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false; // Always start hidden
+
+        Mesh mesh = GetComponent<MeshFilter>().mesh;
+        objectBounds = mesh.bounds;
+    }
+
+
+    public Bounds GetBounds()
+    {
+        return objectBounds;
     }
 
     public void HideOption()

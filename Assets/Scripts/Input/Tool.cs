@@ -318,7 +318,7 @@ public class Tool : GazeSelectionTarget, IFadeTarget
         }
     }
 
-    private void ToolAction()
+    public void ToolAction()
     {
         if (selected)
         {

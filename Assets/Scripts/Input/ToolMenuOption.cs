@@ -8,7 +8,6 @@ public enum ToolOptionType
     Reset,
     Zoom,
     Tilt
-    //TODO: include possible actions for this menu here
 
 }
 
@@ -28,13 +27,33 @@ public class ToolMenuOption : MenuOption
             orButton = new Button();
             orButton.type = this.OptionToButton();
         }
-        tool = new Tool(); //TODO correctly initialize script and modify to ignore gaze and such
+        else
+        {
+            tool = new Tool();
+            tool.type = this.OptionToTool();
+        }
+        
     }
 
     public override void OptionAction()
     {
-        tool.Select();
-        //TODO: How to unselect
+        if(tool == null)
+        {
+            // If there is no tool registerer it must be a button
+            if(orButton == null)
+            {
+                Debug.LogError(this + "No tool or button registered");
+                //TODO error handling
+            }
+            else
+            {
+                orButton.ButtonAction();
+            }
+        }
+        else
+        {
+            tool.ToolAction();
+        }
     }
 
     private ToolType OptionToTool()

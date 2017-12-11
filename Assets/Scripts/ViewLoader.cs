@@ -153,7 +153,8 @@ public class ViewLoader : Singleton<ViewLoader>
 
             if (viewBackStack.Count == 0)
             {
-                ToolManager.Instance.HideBackButton();
+                //TODO make this block the back button in Nav menu
+                //ToolManager.Instance.HideBackButton();
             }
         }
 
