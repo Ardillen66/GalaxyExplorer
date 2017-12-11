@@ -38,8 +38,7 @@ AudioSource:
   m_GameObject: {fileID: 179746}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300001, guid: d7065dcba9c99124984bb3d4a1d8f6ac,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d609867a0ef4454d9a7b06bcf3f2640, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -122,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4d3872d4b838a4e8fb3a39dd7bde8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingView: GalaxyView
+  StartingView: EarthView
   movableAudioSource: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

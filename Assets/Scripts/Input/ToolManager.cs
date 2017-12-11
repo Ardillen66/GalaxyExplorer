@@ -64,8 +64,10 @@ public class ToolManager : Singleton<ToolManager>
         GazeSelectionTarget[] selectionTargets = GetComponentsInChildren<GazeSelectionTarget>(true);
         foreach (GazeSelectionTarget selectionTarget in selectionTargets)
         {
+            //Debug.Log(selectionTarget.VoiceCommands[0]);
             selectionTarget.RegisterVoiceCommands();
         }
+
 
         ShowButton.SetActive(false);
         BackButton.SetActive(false);

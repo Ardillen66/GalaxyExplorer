@@ -144,6 +144,7 @@ public class PointOfInterest : GazeSelectionTarget
         {
             Debug.LogWarning("PointOfInterest object \"" + gameObject.name + "\" is missing an AudioSource component.");
         }
+
     }
 
     protected virtual void HideDescription()
@@ -256,6 +257,27 @@ public class PointOfInterest : GazeSelectionTarget
             return true;
         }
 
+    }
+    public void callForVoiceCommand()
+    {
+        if (audioSource)
+        {
+            audioSource.PlayOneShot(AirtapSound);
+        }
+
+        if (CardPOIManager.Instance != null)
+        {
+            CardPOIManager.Instance.HideAllCards();
+        }
+        isSelected = false;
+        GoToScene();
+    }
+    protected override void VoiceCommandCallback(string command)
+    {
+        if (!TransitionManager.Instance.InTransition)
+        {
+            this.callForVoiceCommand();
+        }
     }
 
     [ContextMenu("GoToScene")]

@@ -707,23 +707,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11484806, guid: b8a34fbb03aa9aa448c7bbeca26615ee, type: 2}
-      propertyPath: movableAudioSource
-      value: 
-      objectReference: {fileID: 637635028}
     - target: {fileID: 8264962, guid: b8a34fbb03aa9aa448c7bbeca26615ee, type: 2}
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 24300001, guid: 3904488329f71c94bada2c63dd2c1673,
         type: 2}
-    - target: {fileID: 8264962, guid: b8a34fbb03aa9aa448c7bbeca26615ee, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11484806, guid: b8a34fbb03aa9aa448c7bbeca26615ee, type: 2}
-      propertyPath: StartingView
-      value: EarthView
-      objectReference: {fileID: 0}
+      propertyPath: movableAudioSource
+      value: 
+      objectReference: {fileID: 637635028}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8a34fbb03aa9aa448c7bbeca26615ee, type: 2}
   m_IsPrefabParent: 0

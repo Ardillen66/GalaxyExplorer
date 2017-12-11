@@ -88,6 +88,7 @@ public sealed class PlayerInputManager : Singleton<PlayerInputManager>, ISpeechI
     // calling this function from start will register the keyword and add the callback.
     public bool AddSpeechCallback(string keyword, SpeechCallback callback)
     {
+       
         if (RegisterSpeechKeyword(keyword))
         {
             // Check to see if the callback has already been added.
