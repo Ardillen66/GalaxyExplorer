@@ -787,7 +787,6 @@ public class TransitionManager : Singleton<TransitionManager>
 
         inTransition = true;
         StartTransitionForNewScene(sourceObject);
-
         SwitchAudioClips(sceneName);
         ViewLoader.Instance.LoadViewAsync(sceneName, true, NextSceneLoaded);
     }

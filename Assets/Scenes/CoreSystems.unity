@@ -674,7 +674,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.size
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -946,7 +946,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[15].Keyword
-      value: orbit size
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1292,6 +1292,11 @@ Prefab:
       propertyPath: VoiceCommands.Array.data[0]
       value: sun
       objectReference: {fileID: 0}
+    - target: {fileID: 114743180813448872, guid: 63a00bbeb2426f04d8700794aa7af6d2,
+        type: 2}
+      propertyPath: backScene
+      value: 
+      objectReference: {fileID: 1122807888}
     m_RemovedComponents:
     - {fileID: 114067502177255780, guid: 63a00bbeb2426f04d8700794aa7af6d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 63a00bbeb2426f04d8700794aa7af6d2, type: 2}
@@ -1323,6 +1328,11 @@ MonoBehaviour:
 --- !u!1 &1122807887 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1411167392087016, guid: 63a00bbeb2426f04d8700794aa7af6d2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1122807882}
+--- !u!1 &1122807888 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1574270425967804, guid: 63a00bbeb2426f04d8700794aa7af6d2,
     type: 2}
   m_PrefabInternal: {fileID: 1122807882}
 --- !u!1 &1169329766 stripped

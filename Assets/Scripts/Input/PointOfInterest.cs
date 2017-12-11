@@ -76,6 +76,8 @@ public class PointOfInterest : GazeSelectionTarget
     protected bool initialized = false;
     //Ahmed: To control the logic of select and keep & deselect
     public bool isSelected;
+    //Ahmed : To control the transition
+    //public GameObject backScene;
 
 
     private void Awake()
@@ -272,6 +274,7 @@ public class PointOfInterest : GazeSelectionTarget
         isSelected = false;
         GoToScene();
     }
+
     protected override void VoiceCommandCallback(string command)
     {
         if (!TransitionManager.Instance.InTransition)
