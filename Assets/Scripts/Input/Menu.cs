@@ -264,6 +264,18 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     //    }
     //}
 
+    private MenuOption GetSelectedOption(Vector3 curSelected)
+    {
+        foreach(KeyValuePair<Bounds,MenuOption> opt in MenuOptions)
+        {
+            if (opt.Key.Contains(curSelected))
+            {
+                return opt.Value;
+            }
+        }
+        return null; // It is possible that no option is selected
+    }
+
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         if (hasGaze)
@@ -284,8 +296,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             {
                 SelectedOption.RemoveHighlight();
             }
-            //TODO retrieve option that contains relativePosition in its bounds
-            SelectedOption = MenuOptions.;
+            SelectedOption = GetSelectedOption(relativePosition);
             SelectedOption.Highlight();
             return true;
         }
@@ -299,7 +310,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             //Select currently higlighted option and activate callback
             if (SelectedOption == null)
             {
-                SelectedOption = MenuOptions[this.OptionIndex(relativePosition)]; //TODO improve option management and what to do when still no selected option
+                SelectedOption = GetSelectedOption(relativePosition);
             }
             SelectedOption.OptionAction(); // Perform action from this option
             SelectedOption.RemoveHighlight();
@@ -331,11 +342,12 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (!TransitionManager.Instance.InTransition)
         {
-            foreach(MenuOption opt in MenuOptions)
+
+            foreach(KeyValuePair<Bounds, MenuOption> opt in MenuOptions)
             {
-                if (command.Equals(opt.VoiceCommand))
+                if (command.Equals(opt.Value.VoiceCommand))
                 {
-                    opt.OptionAction();
+                    opt.Value.OptionAction();
                 }
             }
         }
