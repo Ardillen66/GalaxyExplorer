@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dashboard : MonoBehaviour, IFadeTarget {
+public class Dashboard : GazeSelectionTarget, IFadeTarget {
+
+    public bool HasGaze = false;
 
     public Material DefaultMaterial; // When not looking at it
     // TODO modify this code for this case
@@ -78,5 +80,15 @@ public class Dashboard : MonoBehaviour, IFadeTarget {
         {
             CacheMaterialDefaultAttributes(ref selectedMaterialDefaults, SelectedMaterial);
         }
+    }
+
+    public override void OnGazeSelect()
+    {
+        HasGaze = true;
+    }
+
+    public override void OnGazeDeselect()
+    {
+        HasGaze = false;
     }
 }

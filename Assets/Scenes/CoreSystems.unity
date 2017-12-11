@@ -2599,6 +2599,48 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: ShownViewOffset.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: HiddenViewOffset.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: ShownViewOffset.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: HiddenViewOffset.y
+      value: -0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: RotationDeadZoneAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: OutOfViewRecenterTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: ShownTopAngle
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473852, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: ShownBottomAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 65292733187626544, guid: ee437c654e6887246bba60bee77841eb,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 65292733187626544, guid: ee437c654e6887246bba60bee77841eb,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee437c654e6887246bba60bee77841eb, type: 2}
   m_IsPrefabParent: 0
@@ -2618,6 +2660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1a29788b7f8b94f8c5b47e5dd6428c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VoiceCommands: []
+  HasGaze: 0
   DefaultMaterial: {fileID: 0}
   SelectedMaterial: {fileID: 0}
 --- !u!1 &1948072935

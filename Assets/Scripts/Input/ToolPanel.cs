@@ -53,6 +53,8 @@ public class ToolPanel : MonoBehaviour
 
     private ToolsFader toolsFader;
 
+    private Dashboard dash;
+
     private void Awake()
     {
         var fadersGo = new GameObject("Tools Fader");
@@ -60,6 +62,8 @@ public class ToolPanel : MonoBehaviour
         toolsFader = fadersGo.AddComponent<ToolsFader>();
 
         toolsFader.fadeTargets = GetComponentsInChildren<IFadeTarget>();
+
+        dash = GetComponentInChildren <Dashboard> (true);
     }
 
     private void OnEnable()
@@ -88,6 +92,7 @@ public class ToolPanel : MonoBehaviour
     {
         if (Camera.main != null)
         {
+            //TODO review Angles where the vertical position is fixed
             Vector3 desiredRotationVector = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * Vector3.forward;
             Vector3 verticalLook = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.x, Camera.main.transform.right) * Camera.main.transform.forward;
 
@@ -95,8 +100,8 @@ public class ToolPanel : MonoBehaviour
 
             // detect if the tool panel is in the user's view, if it isn't, start a timer to
             //  recenter it so it is directly in front of them when they look back at it
-            if ((IsLowered && (angle < HiddenTopAngle || angle > HiddenBottomAngle)) ||
-                (!IsLowered && (angle < ShownTopAngle || angle > ShownBottomAngle)) || verticalLook.y > 0)
+            if (!dash.HasGaze && ((IsLowered && (angle < HiddenTopAngle || angle > HiddenBottomAngle)) ||
+                (!IsLowered && (angle < ShownTopAngle || angle > ShownBottomAngle)) || verticalLook.y > 0))
             {
                 outOfViewTimer += Time.deltaTime;
 

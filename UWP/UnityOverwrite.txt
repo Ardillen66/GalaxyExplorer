@@ -5,12 +5,12 @@
 # Write a line equal to 'overwrite-all' (without quotes) to overwrite everything (preserved accross builds)
 # Write a line equal to 'keep-all' (without quotes) to keep files regardless their modification (preserved accross builds)
 # Default behavior is to never overwrite files
-GalaxyExplorer.sln: modified
+GalaxyExplorer.sln: C269AB9DA4958DBB5F788528A50EC9CD
 project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 GalaxyExplorer\App.xaml: 038C3DD99B475FC219603A6A899360C2
 GalaxyExplorer\App.xaml.cs: 398F5F56AEAF9817DA0B8D576A73DB45
-GalaxyExplorer\GalaxyExplorer.csproj: 9768FF34D0303319B0EC064E2B412174
-GalaxyExplorer\GalaxyExplorer.csproj.user: modified
+GalaxyExplorer\GalaxyExplorer.csproj: E18B1305420707D4F9F406D40188EE3D
+GalaxyExplorer\GalaxyExplorer.csproj.user: BEFB8AC4886C4CFDD3C68445D6F19B04
 GalaxyExplorer\MainPage.xaml: 3BB12B25B3FA94FF6859F71392188280
 GalaxyExplorer\MainPage.xaml.cs: FB136B6A23C8D41768DAEEDF130490BA
 GalaxyExplorer\Package.appxmanifest: B13E524E95D73827BD1485FF5574C4D5
@@ -27,12 +27,6 @@ GalaxyExplorer\Assets\StoreLogo.scale-150.png: 8ED3D976C3870D6F88EB7AC1C80EBAC6
 GalaxyExplorer\Assets\StoreLogo.scale-200.png: D5FFCB3A106AEB40347D242E70413666
 GalaxyExplorer\Assets\StoreLogo.scale-400.png: F95C73B467976269365081CC6A6FA786
 GalaxyExplorer\Assets\Wide310x150Logo.scale-200.png: A287E3C81D97CE57C80FE54E7E0690EB
-GalaxyExplorer\obj\x64\Release\App.xaml: FCC7C78F8293D105F1712E7B1592C488
-GalaxyExplorer\obj\x64\Release\GalaxyExplorer.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
-GalaxyExplorer\obj\x64\Release\MainPage.xaml: 8D3ADA665ED582A0F18FB79D84C88580
-GalaxyExplorer\obj\x86\Release\App.xaml: FCC7C78F8293D105F1712E7B1592C488
-GalaxyExplorer\obj\x86\Release\GalaxyExplorer.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
-GalaxyExplorer\obj\x86\Release\MainPage.xaml: 8D3ADA665ED582A0F18FB79D84C88580
 GalaxyExplorer\Properties\AssemblyInfo.cs: 146CA10536CF1D660D7AB9FE427C29EF
 GalaxyExplorer\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
 GeneratedProjects\UWP\Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1

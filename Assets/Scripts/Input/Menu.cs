@@ -17,11 +17,8 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     private static bool IsNavigating = false;
 
     // Options for a menu will, be kept in the list and called accordingly
-    // private List<MenuOption> MenuOptions = new List<MenuOption>();
+    private List<MenuOption> MenuOptions = new List<MenuOption>();
     private MenuOption SelectedOption;
-
-    // Cache the bounds of every Menu Option
-    private Dictionary<Bounds, MenuOption> MenuOptions = new Dictionary<Bounds, MenuOption>();
 
     // Values for the name gameobject
     public GameObject NameObject;
@@ -143,20 +140,17 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         int idx = 0; //We need to keep track of an array index to add voicecommands
         foreach(MenuOption option in options)
         {
-            MenuOptions.Add(option.GetBounds(), option);
+            MenuOptions.Add(option);
             VoiceCommands[idx++] = option.VoiceCommand;
         }
         previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
         previewText.SetActive(false); // Ensure the preview is hidden by default
-        //TODO startup methods here
 
     }
 
     private void OnDestroy()
-    {
-        // TODO eventual additional cleanup
-        
-        //clear shader cahce
+    { 
+        //clear shader defaults cahce
         RestoreMaterialDefaultAttributes(ref defaultMaterialDefaults, DefaultMaterial);
         RestoreMaterialDefaultAttributes(ref selectedMaterialDefaults, SelectedMaterial);
     }
@@ -195,7 +189,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             //TODO add sound
             meshRenderer.material = SelectedMaterial;
-            foreach(MenuOption opt in MenuOptions.Values)
+            foreach(MenuOption opt in MenuOptions)
             {
                 opt.ShowOption();
             }
@@ -209,7 +203,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             //TODO add sound
             meshRenderer.material = DefaultMaterial;
             nameRenderer.color = DefaultNameColor;
-            foreach(MenuOption opt in MenuOptions.Values)
+            foreach(MenuOption opt in MenuOptions)
             {
                 opt.HideOption();
             }
@@ -266,11 +260,11 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     private MenuOption GetSelectedOption(Vector3 curSelected)
     {
-        foreach(KeyValuePair<Bounds,MenuOption> opt in MenuOptions)
+        foreach(MenuOption opt in MenuOptions)
         {
-            if (opt.Key.Contains(curSelected))
+            if (opt.GetBounds().Contains(curSelected))
             {
-                return opt.Value;
+                return opt;
             }
         }
         return null; // It is possible that no option is selected
@@ -305,6 +299,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override bool OnNavigationCompleted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
+        HideMenu();
         if (IsNavigating)
         {
             //Select currently higlighted option and activate callback
@@ -316,14 +311,15 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             SelectedOption.RemoveHighlight();
             IsNavigating = false;
             SelectedOption = null;
-            HideMenu();
             return true;
         }
+        
         return false;
     }
 
     public override bool OnNavigationCanceled(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
+        HideMenu();
         if (IsNavigating)
         {
             if(SelectedOption != null)
@@ -332,7 +328,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             }
             IsNavigating = false;
             SelectedOption = null;
-            HideMenu();
+            
             return true;
         }
         return false;
@@ -343,11 +339,11 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         if (!TransitionManager.Instance.InTransition)
         {
 
-            foreach(KeyValuePair<Bounds, MenuOption> opt in MenuOptions)
+            foreach(MenuOption opt in MenuOptions)
             {
-                if (command.Equals(opt.Value.VoiceCommand))
+                if (command.Equals(opt.VoiceCommand))
                 {
-                    opt.Value.OptionAction();
+                    opt.OptionAction();
                 }
             }
         }

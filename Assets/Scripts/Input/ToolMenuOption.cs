@@ -24,16 +24,17 @@ public class ToolMenuOption : MenuOption
         //TODO find better way to initialize, but we use this method for now
         if(toolType == ToolOptionType.Grab)
         {
-            orButton = new Button();
+            orButton = gameObject.AddComponent<Button>();
             orButton.type = this.OptionToButton();
         }
         else
         {
-            tool = new Tool();
+            tool = gameObject.AddComponent<Tool>();
             tool.type = this.OptionToTool();
         }
         
     }
+
 
     public override void OptionAction()
     {
