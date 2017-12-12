@@ -15,16 +15,14 @@ public class DataMenuOption : MenuOption
     //DataManager data  TODO make manager to handle showing/hiding data and selecting which type of data to show
     public DataOptionType type;
 
+    private DataManager Data = DataManager.Instance;
+
     private void Awake()
     {
-        if(type == null)
+        
+        if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemVieuw")
         {
-            //TODO find better way to check if type wa correctly assigned from unity
-            Debug.LogWarning("Please assign an option type to " + gameObject.name + " Menu Option");
-        }
-        else if(type == DataOptionType.SwitchView)
-        {
-            //TODO Find a way to be aware of current view, only show this option for solar system en get access to the old POI that had this functionality
+            //TODO only show this option for solar system en get access to the POI that had this functionality
         }
     }
 
@@ -33,22 +31,25 @@ public class DataMenuOption : MenuOption
         switch (type)
         {
             case DataOptionType.SelectData:
-                //TODO show list of available data
+                Data.ShowAvailableData();
                 break;
 
             case DataOptionType.HideBillboard:
-                //TODO hide the data billboard 
-                //data.HideBillboard();
+                Data.HideBillboard();
                 break;
 
             case DataOptionType.ShowBillboard:
-                //TODO show data billboard
-                //data.ShowBillboard();
+                Data.ShowBillboard();
                 break;
 
             case DataOptionType.SwitchView:
-                //TODO get POI for switching views and simulate tap
+                SwitchView(); // Not in Data Manager because this is related to the scene manager and view loader
                 break;
         }
+    }
+
+    private void SwitchView()
+    {
+        throw new NotImplementedException();
     }
 }

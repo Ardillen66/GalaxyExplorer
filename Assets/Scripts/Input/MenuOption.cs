@@ -71,15 +71,15 @@ public abstract class MenuOption : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false; // Always start hidden
 
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
-        objectBounds = mesh.bounds;
+        //Mesh mesh = GetComponent<MeshFilter>().mesh;
+        //objectBounds = meshRenderer.bounds;
     }
 
 
-    public Bounds GetBounds()
-    {
-        return objectBounds;
-    }
+    //public Bounds GetBounds()
+    //{
+    //    return objectBounds;
+    //}
 
     public void HideOption()
     {

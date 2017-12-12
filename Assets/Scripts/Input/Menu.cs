@@ -143,8 +143,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             MenuOptions.Add(option);
             VoiceCommands[idx++] = option.VoiceCommand;
         }
+
         previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
         previewText.SetActive(false); // Ensure the preview is hidden by default
+        
 
     }
 
@@ -233,42 +235,47 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      * |7|6|5|
      * -------
      * */
-    //private int OptionIndex(Vector3 position)
-    //{
-    //    //TODO review this to account for unused positions and return selected option rather than a position
-    //    float xPos = position.x;
-    //    float yPos = position.y;
-    //    if(xPos < -0.25)
-    //    {
-    //        if (yPos > 0.25) return 1;
-    //        else if (yPos < -0.25) return 7;
-    //        else return 8;
-    //    }
-    //    else if(xPos > 0.25)
-    //    {
-    //        if (yPos > 0.25) return 3;
-    //        else if (yPos < -0.25) return 5;
-    //        else return 4;
-    //    }
-    //    else
-    //    {
-    //        if (yPos > 0.25) return 2;
-    //        else if (yPos < -0.25) return 6;
-    //        else return 0;
-    //    }
-    //}
-
-    private MenuOption GetSelectedOption(Vector3 curSelected)
+    private int OptionIndex(Vector3 position)
     {
-        foreach(MenuOption opt in MenuOptions)
+        //TODO review this to account for unused positions and return selected option rather than a position
+        float xPos = position.x;
+        float yPos = position.y;
+        if (xPos < -0.25)
         {
-            if (opt.GetBounds().Contains(curSelected))
-            {
-                return opt;
-            }
+            if (yPos > 0.25) return 1;
+            else if (yPos < -0.25) return 7;
+            else return 8;
         }
-        return null; // It is possible that no option is selected
+        else if (xPos > 0.25)
+        {
+            if (yPos > 0.25) return 3;
+            else if (yPos < -0.25) return 5;
+            else return 4;
+        }
+        else
+        {
+            if (yPos > 0.25) return 2;
+            else if (yPos < -0.25) return 6;
+            else return 0;
+        }
     }
+
+    private MenuOption GetSelectedOption(Vector3 sel)
+    {
+        return MenuOptions[OptionIndex(sel)];
+    }
+
+    //private MenuOption GetSelectedOption(Vector3 curSelected)
+    //{
+    //    foreach(MenuOption opt in MenuOptions)
+    //    {
+    //        if (opt.GetBounds().Contains(curSelected))
+    //        {
+    //            return opt;
+    //        }
+    //    }
+    //    return null; // It is possible that no option is selected
+    //}
 
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {

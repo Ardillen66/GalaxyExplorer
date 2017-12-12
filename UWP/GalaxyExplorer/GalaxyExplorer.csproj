@@ -237,12 +237,12 @@
 
   <ItemGroup>
     <ProjectReference Include="D:\Users\arnau\Documents\School\Projecten 17_18\NGUI\GalaxyExplorer\UWP\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj">
-      <Project>{5413b114-9552-41f3-bb8b-a2ccd5e37e61}</Project>
+      <Project>{24e52c8a-d338-408a-8656-8d4d9582184b}</Project>
       <Name>Assembly-CSharp</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="D:\Users\arnau\Documents\School\Projecten 17_18\NGUI\GalaxyExplorer\UWP\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj">
-      <Project>{cc7e6b7c-2951-4cfb-bce7-3a8b67b2afd9}</Project>
+      <Project>{77de5898-a147-4b1e-88b0-2a994d6d5381}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
       <Private>False</Private>
     </ProjectReference>
