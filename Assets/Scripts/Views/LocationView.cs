@@ -86,7 +86,7 @@ public class LocationView : MonoBehaviour
         // stop or play VO, the introduction flow will handle that for us
         if (!InIntro())
         {
-            VOManager.Instance.PlayClip(VoiceOver);
+            //VOManager.Instance.PlayClip(VoiceOver);
         }
     }
 
