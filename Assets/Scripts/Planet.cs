@@ -12,7 +12,7 @@ namespace Assets.Scripts
         public string displaytitle;
         private int pageid;
         public string extract;
-        private string extract_html;
+        public string extract_html;
         private string thumbnail;
         private string originalimage;
         private string lang;

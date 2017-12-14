@@ -7,7 +7,6 @@ public enum DataOptionType
     ShowBillboard,
     HideBillboard,
     SwitchView
-    //TODO: include possible actions for this menu here
 }
 
 public class DataMenuOption : MenuOption
@@ -20,7 +19,7 @@ public class DataMenuOption : MenuOption
     private void Awake()
     {
         Data = DataManager.Instance;
-        if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemVieuw")
+        if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemView")
         {
             //TODO only show this option for solar system en get access to the POI that had this functionality
         }
