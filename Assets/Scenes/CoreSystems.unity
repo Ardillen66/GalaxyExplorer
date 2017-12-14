@@ -559,6 +559,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36881ada71860694aa9c29a0f8e52250, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &778454779 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 8289458, guid: 36881ada71860694aa9c29a0f8e52250,
+    type: 2}
+  m_PrefabInternal: {fileID: 778454778}
 --- !u!114 &792316800 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114037203823702286, guid: 63a00bbeb2426f04d8700794aa7af6d2,
@@ -685,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6f3b91ea1f9634db308846d1cdfb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1015132146}
+  audioSource: {fileID: 778454779}
   voice: 0
 --- !u!82 &985718650
 AudioSource:
@@ -736,7 +741,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -754,7 +759,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -864,7 +869,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

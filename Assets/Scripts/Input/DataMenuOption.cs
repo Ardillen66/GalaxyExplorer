@@ -15,11 +15,11 @@ public class DataMenuOption : MenuOption
     //DataManager data  TODO make manager to handle showing/hiding data and selecting which type of data to show
     public DataOptionType type;
 
-    private DataManager Data = DataManager.Instance;
+    private DataManager Data;
 
     private void Awake()
     {
-        
+        Data = DataManager.Instance;
         if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemVieuw")
         {
             //TODO only show this option for solar system en get access to the POI that had this functionality
