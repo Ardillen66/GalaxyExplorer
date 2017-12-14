@@ -44,14 +44,13 @@ public class EarthDataView : MonoBehaviour {
             planet = JsonUtility.FromJson<Planet>(www.text);
 
 
-
             planetTitle.text = planet.displaytitle;
-            descriptionText.text = planet.extract;
+            descriptionText.text = planet.extract_html;
         }
 
         textToSpeech.StartSpeaking(descriptionText.text);
 
-        if (textToSpeech.IsSpeaking())
+     	  if (textToSpeech.IsSpeaking())
         {
             Debug.Log("Speaking");
         }

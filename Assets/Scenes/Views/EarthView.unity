@@ -291,22 +291,22 @@ Prefab:
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.771
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
@@ -321,12 +321,12 @@ Prefab:
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
@@ -372,6 +372,45 @@ Prefab:
         type: 2}
       propertyPath: url
       value: https://en.wikipedia.org/api/rest_v1/page/summary/Earth
+      objectReference: {fileID: 0}
+    - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381553866338280, guid: b045152323edd4fb1aebd26d019b32e2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 102310668226646672, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_FontSize
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 102310668226646672, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102323847229351314, guid: b045152323edd4fb1aebd26d019b32e2,
+        type: 2}
+      propertyPath: m_FontSize
+      value: 54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b045152323edd4fb1aebd26d019b32e2, type: 2}
@@ -814,7 +853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1905502572
 Transform:
   m_ObjectHideFlags: 0
