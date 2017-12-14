@@ -46,7 +46,7 @@ public class EarthDataView : MonoBehaviour {
 
 
             planetTitle.text = planet.displaytitle;
-            descriptionText.text = planet.extract;
+            descriptionText.text = planet.extract_html;
         }
 
         textToSpeech.StartSpeaking(descriptionText.text);
