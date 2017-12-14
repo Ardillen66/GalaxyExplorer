@@ -13,7 +13,7 @@ public class EarthDataView : MonoBehaviour {
     private Planet planet;
     private Transform originalParent;
 
-    public string url = "https://en.wikipedia.org/api/rest_v1/page/summary/Earth";
+    public string url;
 
 
     private void Awake()
