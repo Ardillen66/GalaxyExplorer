@@ -7,8 +7,9 @@ using HoloToolkit.Unity;
 
 public class EarthDataView : MonoBehaviour {
 
-    public Text planetTitle;
-    public Text descriptionText;
+	public TextMesh planetTitle;
+	public TextMesh descriptionText;
+
     private TextToSpeech textToSpeech;
     private Planet planet;
     private Transform originalParent;
@@ -41,6 +42,8 @@ public class EarthDataView : MonoBehaviour {
             yield return www;
 
             planet = JsonUtility.FromJson<Planet>(www.text);
+
+
 
             planetTitle.text = planet.displaytitle;
             descriptionText.text = planet.extract;
