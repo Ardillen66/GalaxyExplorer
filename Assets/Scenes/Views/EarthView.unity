@@ -291,7 +291,7 @@ Prefab:
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.771
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
@@ -331,7 +331,7 @@ Prefab:
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224867731602964720, guid: b045152323edd4fb1aebd26d019b32e2,
         type: 2}
@@ -858,7 +858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1905502572
 Transform:
   m_ObjectHideFlags: 0

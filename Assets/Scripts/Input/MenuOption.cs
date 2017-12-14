@@ -12,8 +12,6 @@ public abstract class MenuOption : MonoBehaviour
     public Material HightlightMaterial;
     public Dictionary<string, float> highlightMaterialDefaults = new Dictionary<string, float>();
 
-    public event Action<MenuType> OptionSelected; //TODO also include which option was selected
-
     private MeshRenderer meshRenderer;
 
     private float currentOpacity = 1;
@@ -92,8 +90,6 @@ public abstract class MenuOption : MonoBehaviour
         meshRenderer.material = DefaultMaterial;
     }
 
-
-    //TODO register and manage actions when option is selected
     public abstract void OptionAction();
 
     /*

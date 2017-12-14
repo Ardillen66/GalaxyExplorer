@@ -6,7 +6,6 @@ public enum NavOptionType
     GoToSelected,
     SelectDestination,
     GoBack
-    //TODO: include possible actions for this menu here
 
 }
 

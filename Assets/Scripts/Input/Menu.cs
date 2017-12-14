@@ -242,7 +242,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
      * */
     private int OptionIndex(Vector3 position)
     {
-        //TODO review this to account for unused positions and return selected option rather than a position
         float xPos = position.x;
         float yPos = position.y;
         if (xPos < -0.25)
@@ -265,6 +264,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         }
     }
 
+    /**
+     * Retrieves a MenuOption given an index
+     * Note: Assumes pre-determined indices for now according to the grid structure described above. Should be improved on in later versions
+     * */
     private MenuOption GetSelectedOption(Vector3 sel)
     {
         return MenuOptions[OptionIndex(sel)];
