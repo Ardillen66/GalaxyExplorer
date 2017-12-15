@@ -31,8 +31,8 @@ public class EarthDataView : MonoBehaviour {
 
         if (IntroductionFlow.Instance != null)
         {
-            planetTitle.text = "";
-            descriptionText.text = "";
+            planetTitle.text = "Some planet";
+            descriptionText.text = "Test text";
 
         }
         else

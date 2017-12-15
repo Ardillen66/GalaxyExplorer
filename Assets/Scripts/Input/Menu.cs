@@ -226,15 +226,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     public override void OnGazeDeselect()
     {
         hasGaze = false;
-        if (IsNavigating)
-        {
-            HideMenu();
-        }
-        else
+        if (!IsNavigating)
         {
             HidePreview();
         }
-        
     }
 
     /**

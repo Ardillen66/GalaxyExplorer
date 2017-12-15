@@ -12,6 +12,8 @@ using UnityEngine;
  */
 public class DataManager : Singleton<DataManager>
 {
+    public bool IsHidden = false;
+
     public void ShowAvailableData()
     {
         throw new NotImplementedException();
@@ -19,11 +21,13 @@ public class DataManager : Singleton<DataManager>
 
     internal void HideBillboard()
     {
+        IsHidden = true;
         throw new NotImplementedException();
     }
 
     internal void ShowBillboard()
     {
+        IsHidden = false;
         throw new NotImplementedException();
     }
 }

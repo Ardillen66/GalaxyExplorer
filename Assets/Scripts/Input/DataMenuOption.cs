@@ -21,9 +21,35 @@ public class DataMenuOption : MenuOption
         Data = DataManager.Instance;
         if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemView")
         {
-            //TODO only show this option for solar system en get access to the POI that had this functionality
+            this.gameObject.SetActive(false);
         }
+        if (type == DataOptionType.HideBillboard)
+        {
+            if (Data.IsHidden)
+            {
+                Show();
+            }
+            else
+            {
+                Hide();
+            }
+        }
+
+        if (type == DataOptionType.ShowBillboard)
+        {
+            if (Data.IsHidden)
+            {
+                Hide();
+            }
+            else
+            {
+                Show();
+            }
+        }
+
     }
+
+   
 
     public override void OptionAction()
     {
@@ -35,10 +61,13 @@ public class DataMenuOption : MenuOption
 
             case DataOptionType.HideBillboard:
                 Data.HideBillboard();
+                Hide();
+                //TODO show other
                 break;
 
             case DataOptionType.ShowBillboard:
                 Data.ShowBillboard();
+                Hide();
                 break;
 
             case DataOptionType.SwitchView:
@@ -47,8 +76,19 @@ public class DataMenuOption : MenuOption
         }
     }
 
+    private void Hide()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    private void Show()
+    {
+        this.gameObject.SetActive(true);
+    }
+
     private void SwitchView()
     {
-        throw new NotImplementedException();
+        OrbitScalePointOfInterest switchPoi = ViewLoader.Instance.GetCurrentContent().GetComponentInChildren<OrbitScalePointOfInterest>(true);
+        switchPoi.callOrbitSelect();
     }
 }
