@@ -7,8 +7,8 @@ using HoloToolkit.Unity;
 
 public class EarthDataView : MonoBehaviour {
 
-	public TextMesh planetTitle;
-	public TextMesh descriptionText;
+	public Text planetTitle;
+	public Text descriptionText;
 
     private TextToSpeech textToSpeech;
     private Planet planet;
