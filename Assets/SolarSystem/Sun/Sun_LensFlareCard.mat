@@ -59,7 +59,7 @@ Material:
     - _Cutoff: 0.5
     - _DSTBLEND: 10
     - _DetailNormalMapScale: 1
-    - _DistFromCamera: 2.3028662
+    - _DistFromCamera: 2
     - _DstBlend: 0
     - _Glossiness: 0.5
     - _InvFade: 1

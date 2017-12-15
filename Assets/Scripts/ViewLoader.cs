@@ -212,7 +212,40 @@ public class ViewLoader : Singleton<ViewLoader>
 
         if (forwardNavigation && CurrentView != null && !IntroductionFlow.Instance)
         {
-            viewBackStack.Push(CurrentView);
+            switch (viewName)
+            {
+                case "EarthView":
+                case "SunView":
+                case "MarsView":
+                case "MercuryView":
+                case "VenusView":
+                case "JupiterView":
+                case "SaturnView":
+                case "UranusView":
+                case "NeptuneView":
+                case "PlutoView":
+                    Debug.Log("Earth Stack is working");
+                    viewBackStack.Push("GalaxyView");
+                    viewBackStack.Push("SolarSystemView");
+                    break;
+                case "SagAStarView":
+                case "S102View":
+                case "S2View":
+                    Debug.Log("Earth Stack is working");
+                    viewBackStack.Push("GalaxyView");
+                    viewBackStack.Push("GalacticCenter");
+                    break;
+
+                case "SolarSystemView":
+                case "GalacticCenter":
+                    Debug.Log("Earth Stack is working");
+                    viewBackStack.Push("GalaxyView");
+                    break;
+
+                default:
+                    viewBackStack.Push(CurrentView);
+                    break;
+            }
             //ToolManager.Instance.ShowBackButton();
         }
 

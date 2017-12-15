@@ -62,7 +62,7 @@ Material:
     - _DstBlend: 0
     - _EmissionScaleUI: 0
     - _FadeOffDistanceAroundPlanet: 0.04
-    - _GlobalScale: 0.13541198
+    - _GlobalScale: 8.944398
     - _Glossiness: 0
     - _Lightmapping: 1
     - _LinearColorBoostFactor: 0.5
