@@ -214,9 +214,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override void OnGazeSelect()
     {
+        hasGaze = true;
         if (!IsNavigating)
         {
-            hasGaze = true;
+            
             ShowPreview();
         }
         
@@ -224,9 +225,16 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public override void OnGazeDeselect()
     {
-        
         hasGaze = false;
-        HidePreview();
+        if (IsNavigating)
+        {
+            HideMenu();
+        }
+        else
+        {
+            HidePreview();
+        }
+        
     }
 
     /**
