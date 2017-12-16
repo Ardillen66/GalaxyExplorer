@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4839885928297132, guid: b891ba00f6ef15e43a0d545d8465ff5d, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4839885928297132, guid: b891ba00f6ef15e43a0d545d8465ff5d, type: 2}
       propertyPath: m_LocalScale.x
@@ -567,25 +567,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 484469583}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!1 &484469585 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011327985922, guid: 022450106439a8946ae18a9e20cc92d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 484469583}
---- !u!114 &484469586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 484469585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14dc787dc1ae484cbb3e9a5902c62f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planetTitle: {fileID: 0}
-  descriptionText: {fileID: 0}
-  url: https://en.wikipedia.org/api/rest_v1/page/summary/Earth
 --- !u!1 &629688017
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,8 +669,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 41916579}
   - {fileID: 1569143154}
+  - {fileID: 41916579}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -888,7 +869,7 @@ Transform:
   - {fileID: 1932499830}
   - {fileID: 69792931}
   m_Father: {fileID: 629688023}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1802165984
 Prefab:
