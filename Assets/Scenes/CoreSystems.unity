@@ -1045,7 +1045,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[10].Keyword
-      value: jupiter
+      value: go to Jupiter
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1081,7 +1081,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[11].Keyword
-      value: saturn
+      value: go to Saturn
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1117,7 +1117,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[12].Keyword
-      value: uranus
+      value: go to Uranus
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1153,7 +1153,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[13].Keyword
-      value: neptune
+      value: go to Neptune
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1189,7 +1189,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[14].Keyword
-      value: pluto
+      value: go to Pluto
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1501,7 +1501,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[3].Keyword
-      value: source one
+      value: go to Source one
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1511,22 +1511,22 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[4].Keyword
-      value: source two
+      value: go to Source two
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[5].Keyword
-      value: sun
+      value: go to Sun
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[6].Keyword
-      value: mercury
+      value: go to Mercury
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[7].Keyword
-      value: venus
+      value: go to Venus
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1536,7 +1536,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[8].Keyword
-      value: earth
+      value: go to Earth
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1546,7 +1546,7 @@ Prefab:
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
       propertyPath: KeywordsAndResponses.Array.data[9].Keyword
-      value: mars
+      value: go to Mars
       objectReference: {fileID: 0}
     - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
         type: 2}
@@ -1576,6 +1576,16 @@ Prefab:
       propertyPath: backScene
       value: 
       objectReference: {fileID: 1122807888}
+    - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[0].Keyword
+      value: go to Solar system
+      objectReference: {fileID: 0}
+    - target: {fileID: 114996278854502102, guid: 63a00bbeb2426f04d8700794aa7af6d2,
+        type: 2}
+      propertyPath: KeywordsAndResponses.Array.data[1].Keyword
+      value: go to Galactic center
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114067502177255780, guid: 63a00bbeb2426f04d8700794aa7af6d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 63a00bbeb2426f04d8700794aa7af6d2, type: 2}
