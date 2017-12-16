@@ -6,6 +6,9 @@ public abstract class MenuOption : MonoBehaviour
 {
     private static bool Selected = false;
 
+    //list of indices to keep track of the position of an option in th menu grid (see Menu for details)
+    public List<int> GridIndex;
+
     //Code below is reproduced from the Button clqss and assumes the same meshes and shaders are being used
     public Material DefaultMaterial;
     public Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
@@ -73,6 +76,11 @@ public abstract class MenuOption : MonoBehaviour
         //objectBounds = meshRenderer.bounds;
     }
 
+    public bool IsSelected()
+    {
+        return Selected;
+    }
+
 
     //public Bounds GetBounds()
     //{
@@ -88,6 +96,11 @@ public abstract class MenuOption : MonoBehaviour
     {
         meshRenderer.enabled = true;
         meshRenderer.material = DefaultMaterial;
+    }
+
+    public bool IsHidden()
+    {
+        return meshRenderer.enabled;
     }
 
     public abstract void OptionAction();

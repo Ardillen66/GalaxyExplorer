@@ -2,6 +2,7 @@
 using UnityEngine.VR.WSA.Input;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public enum MenuType
 {
@@ -34,7 +35,6 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public MenuType type;
     
-    private bool selected = false;
     private MeshRenderer meshRenderer;
     
     // Fade target attributes. Code Recycled from Tool/Button equivalents
@@ -121,7 +121,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
         nameRenderer = NameObject.GetComponent<TextMesh>();
 
-        if(DefaultNameColor == null)
+        if(DefaultNameColor == null) //TODO always false, find better way to check for unasigned color
         {
             Debug.LogWarning(gameObject.name + "Menu has no default color for the name");
         }
@@ -178,7 +178,10 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             //TODO add sound
             //meshRenderer.material = DefaultMaterial;
             previewText.SetActive(false);
-            nameRenderer.color = DefaultNameColor;
+            if (!IsNavigating)
+            {
+                nameRenderer.color = DefaultNameColor;
+            } 
         }
     }
 
@@ -191,6 +194,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             //TODO add sound
             meshRenderer.material = SelectedMaterial;
+            nameRenderer.color = HighlightNameColor;
             foreach(MenuOption opt in MenuOptions)
             {
                 opt.ShowOption();
@@ -268,32 +272,30 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     }
 
     /**
-     * Retrieves a MenuOption given an index
+     * Retrieves a MenuOption given the current position of the user's hand
      * Note: Assumes pre-determined indices for now according to the grid structure described above. Should be improved on in later versions
      * */
     private MenuOption GetSelectedOption(Vector3 sel)
     {
-        return MenuOptions[OptionIndex(sel)];
+        try
+        {
+            return MenuOptions.Single<MenuOption>(opt => (opt.GridIndex.Contains(OptionIndex(sel)) && !opt.IsHidden()));
+        }
+        catch (InvalidOperationException)
+        {
+            return null; // return null if no option with index at given grid position
+        }
+       
+        //return MenuOptions[OptionIndex(sel)];
     }
-
-    //private MenuOption GetSelectedOption(Vector3 curSelected)
-    //{
-    //    foreach(MenuOption opt in MenuOptions)
-    //    {
-    //        if (opt.GetBounds().Contains(curSelected))
-    //        {
-    //            return opt;
-    //        }
-    //    }
-    //    return null; // It is possible that no option is selected
-    //}
+    
 
     public override bool OnNavigationStarted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         if (hasGaze)
         {
-            HidePreview(); // hide the preview menu wihch should be active when gaze selected
             IsNavigating = true;
+            HidePreview(); // hide the preview menu wihch should be active when gaze selected
             ShowMenu();
             return true;
         }
@@ -320,6 +322,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         HideMenu();
         if (IsNavigating)
         {
+            IsNavigating = false;
             //Select currently higlighted option and activate callback
             if (SelectedOption == null)
             {
@@ -327,7 +330,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             }
             SelectedOption.OptionAction(); // Perform action from this option
             SelectedOption.RemoveHighlight();
-            IsNavigating = false;
+            
             SelectedOption = null;
             return true;
         }
