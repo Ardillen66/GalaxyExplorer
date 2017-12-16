@@ -5,10 +5,11 @@ using UnityEngine.UI;
 using Assets.Scripts;
 using HoloToolkit.Unity;
 
-public class EarthDataView : MonoBehaviour {
+public class EarthDataView : MonoBehaviour
+{
 
-	public Text planetTitle;
-	public Text descriptionText;
+    public Text planetTitle;
+    public Text descriptionText;
 
     private TextToSpeech textToSpeech;
     private Planet planet;
@@ -19,6 +20,8 @@ public class EarthDataView : MonoBehaviour {
 
     private void Awake()
     {
+        if (IntroductionFlow.Instance != null) Destroy(gameObject);
+
         var textToSpeechManager = GameObject.Find("TextToSpeechManager");
         textToSpeech = textToSpeechManager.GetComponent<TextToSpeech>();
         textToSpeech.Voice = TextToSpeechVoice.Zira;
@@ -26,31 +29,22 @@ public class EarthDataView : MonoBehaviour {
     }
 
     // Use this for initialization
-    IEnumerator Start () {
+    IEnumerator Start()
+    {
+        WWW www = new WWW(url);
+
+        yield return www;
+
+        planet = JsonUtility.FromJson<Planet>(www.text);
 
 
-        if (IntroductionFlow.Instance != null)
-        {
-            planetTitle.text = "Some planet";
-            descriptionText.text = "Test text";
+        planetTitle.text = planet.displaytitle;
+        descriptionText.text = planet.extract;
 
-        }
-        else
-        {
-            WWW www = new WWW(url);
-
-            yield return www;
-
-            planet = JsonUtility.FromJson<Planet>(www.text);
-
-
-            planetTitle.text = planet.displaytitle;
-            descriptionText.text = planet.extract;
-        }
 
         textToSpeech.StartSpeaking(descriptionText.text);
 
-     	  if (textToSpeech.IsSpeaking())
+        if (textToSpeech.IsSpeaking())
         {
             Debug.Log("Speaking");
         }
@@ -60,11 +54,19 @@ public class EarthDataView : MonoBehaviour {
         }
 
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-       
+    // Update is called once per frame
+    void Update()
+    {
+
+
+
+    }
+    void OnDestroy()
+    {
+        Debug.Log("Destroy Text is working");
+        Destroy(planetTitle);
+        Destroy(descriptionText);
     }
 
 

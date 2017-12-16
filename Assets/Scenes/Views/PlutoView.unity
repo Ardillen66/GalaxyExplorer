@@ -770,25 +770,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1792766720}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!1 &1792766722 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011327985922, guid: 022450106439a8946ae18a9e20cc92d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1792766720}
---- !u!114 &1792766723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1792766722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14dc787dc1ae484cbb3e9a5902c62f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planetTitle: {fileID: 0}
-  descriptionText: {fileID: 0}
-  url: https://en.wikipedia.org/api/rest_v1/page/summary/Earth
 --- !u!1001 &1866250174
 Prefab:
   m_ObjectHideFlags: 0
