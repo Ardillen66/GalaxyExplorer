@@ -67,7 +67,7 @@ public abstract class MenuOption : MonoBehaviour
         mat.SetInt("_ZWRITE", (int)dict["_ZWRITE"]);
     }
 
-    private void Start()
+    public virtual void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false; // Always start hidden

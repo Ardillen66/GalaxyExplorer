@@ -58,6 +58,7 @@ public class DataManager : Singleton<DataManager>
 
     public void ToggleData()
     {
+        Debug.Log("Toggeling data visibility");
         if (IsHidden)
         {
             ShowBillboard();

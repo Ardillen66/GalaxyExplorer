@@ -26,10 +26,15 @@ public class DataMenuOption : MenuOption
 
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         Data = DataManager.Instance;
-        Debug.Log("Loaded data manager " + Data);
+        if(type == DataOptionType.ShowBillboard)
+        {
+            HideOption(); //Data is shown by default, so show button is hidden
+        }
+        
     }
 
 
@@ -44,7 +49,6 @@ public class DataMenuOption : MenuOption
 
             case DataOptionType.HideBillboard:
             case DataOptionType.ShowBillboard:
-                Debug.Log("Toggeling data visibility");
                 Data.ToggleData();
                 break;
 
@@ -52,16 +56,6 @@ public class DataMenuOption : MenuOption
                 SwitchView(); // Not in Data Manager because this is related to the scene manager and view loader
                 break;
         }
-    }
-
-    private void Hide()
-    {
-        this.gameObject.SetActive(false);
-    }
-
-    private void Show()
-    {
-        this.gameObject.SetActive(true);
     }
 
     private void SwitchView()

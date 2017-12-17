@@ -2739,7 +2739,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1712268160513426, guid: ee437c654e6887246bba60bee77841eb, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114583617469164622, guid: ee437c654e6887246bba60bee77841eb,
         type: 2}
@@ -3120,6 +3120,10 @@ Prefab:
         type: 2}
       propertyPath: GridIndex.Array.data[0]
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452807669980082, guid: ee437c654e6887246bba60bee77841eb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee437c654e6887246bba60bee77841eb, type: 2}
