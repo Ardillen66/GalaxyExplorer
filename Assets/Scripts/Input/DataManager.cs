@@ -14,20 +14,57 @@ public class DataManager : Singleton<DataManager>
 {
     public bool IsHidden = false;
 
+    // Menu options for showing and hiding data
+    public DataMenuOption showData;
+    public DataMenuOption hideData;
+
+    private void Awake()
+    {
+        Debug.Log("Data manager initialized");
+    }
+
+    /**
+     * Method showing a list of data available for the current view
+     * Note: Not available for this iteration
+     * */
     public void ShowAvailableData()
     {
         throw new NotImplementedException();
     }
 
+    /*
+     * Method used to hide the billboard containing data for the current scene
+     * */
     internal void HideBillboard()
     {
         IsHidden = true;
-        throw new NotImplementedException();
+        GameObject billboard = ViewLoader.Instance.GetCurrentContent().transform.Find("billboard").gameObject;
+        billboard.SetActive(false);
+        hideData.HideOption();
+        showData.ShowOption();
     }
 
+    /*
+     * Method used to show the billboard containing data for the current scene
+     * */
     internal void ShowBillboard()
     {
         IsHidden = false;
-        throw new NotImplementedException();
+        GameObject billboard = ViewLoader.Instance.GetCurrentContent().transform.Find("billboard").gameObject;
+        billboard.SetActive(true);
+        showData.HideOption();
+        hideData.ShowOption();
+    }
+
+    public void ToggleData()
+    {
+        if (IsHidden)
+        {
+            ShowBillboard();
+        }
+        else
+        {
+            HideBillboard();
+        }
     }
 }

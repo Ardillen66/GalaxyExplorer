@@ -11,45 +11,28 @@ public enum DataOptionType
 
 public class DataMenuOption : MenuOption
 {
-    //DataManager data  TODO make manager to handle showing/hiding data and selecting which type of data to show
+    //DataManager data
     public DataOptionType type;
 
     private DataManager Data;
 
     private void Awake()
     {
-        Data = DataManager.Instance;
+        
         if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemView")
         {
             this.gameObject.SetActive(false);
         }
-        if (type == DataOptionType.HideBillboard)
-        {
-            if (Data.IsHidden)
-            {
-                Show();
-            }
-            else
-            {
-                Hide();
-            }
-        }
-
-        if (type == DataOptionType.ShowBillboard)
-        {
-            if (Data.IsHidden)
-            {
-                Hide();
-            }
-            else
-            {
-                Show();
-            }
-        }
 
     }
 
-   
+    private void Start()
+    {
+        Data = DataManager.Instance;
+        Debug.Log("Loaded data manager " + Data);
+    }
+
+
 
     public override void OptionAction()
     {
@@ -60,14 +43,9 @@ public class DataMenuOption : MenuOption
                 break;
 
             case DataOptionType.HideBillboard:
-                Data.HideBillboard();
-                Hide();
-                //TODO show other
-                break;
-
             case DataOptionType.ShowBillboard:
-                Data.ShowBillboard();
-                Hide();
+                Debug.Log("Toggeling data visibility");
+                Data.ToggleData();
                 break;
 
             case DataOptionType.SwitchView:

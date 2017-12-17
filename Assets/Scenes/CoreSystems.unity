@@ -280,6 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHidden: 0
+  showData: {fileID: 1939902157}
+  hideData: {fileID: 1939902156}
 --- !u!4 &431042882
 Transform:
   m_ObjectHideFlags: 0
@@ -3142,6 +3144,18 @@ MonoBehaviour:
   HasGaze: 0
   DefaultMaterial: {fileID: 0}
   SelectedMaterial: {fileID: 0}
+--- !u!114 &1939902156 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114787711233444428, guid: ee437c654e6887246bba60bee77841eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1939902153}
+  m_Script: {fileID: 11500000, guid: 90887acb7f88bc64b89b83000b0cb216, type: 3}
+--- !u!114 &1939902157 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114583617469164622, guid: ee437c654e6887246bba60bee77841eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1939902153}
+  m_Script: {fileID: 11500000, guid: 90887acb7f88bc64b89b83000b0cb216, type: 3}
 --- !u!1 &1948072935
 GameObject:
   m_ObjectHideFlags: 0
