@@ -791,7 +791,17 @@ Prefab:
     - target: {fileID: 114000010164638790, guid: 022450106439a8946ae18a9e20cc92d8,
         type: 2}
       propertyPath: m_Text
-      value: DESCRIPTION
+      value: The Solar System is the gravitationally bound system comprising the Sun
+        and the objects that orbit it, either directly or indirectly. Of those objects
+        that orbit the Sun directly, the largest eight are the planets, with the remainder
+        being smaller objects, such as dwarf planets and small Solar System bodies.
+        Of the objects that orbit the Sun indirectly, the moons, two are larger than
+        the smallest planet, Mercury.\nThe Solar System formed 4.6 billion years ago
+        from the gravitational collapse of a giant interstellar molecular cloud. The
+        vast majority of the system's mass is in the Sun, with the majority of the
+        remaining mass contained in Jupiter. The four smaller inner planets, Mercury,
+        Venus, Earth and Mars, are terrestrial planets, being primarily composed of
+        rock and metal.
       objectReference: {fileID: 0}
     - target: {fileID: 1000011327985922, guid: 022450106439a8946ae18a9e20cc92d8, type: 2}
       propertyPath: m_Name
@@ -820,25 +830,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 443679213}
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
---- !u!1 &443679215 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011327985922, guid: 022450106439a8946ae18a9e20cc92d8,
-    type: 2}
-  m_PrefabInternal: {fileID: 443679213}
---- !u!114 &443679216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 443679215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14dc787dc1ae484cbb3e9a5902c62f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planetTitle: {fileID: 0}
-  descriptionText: {fileID: 0}
-  url: https://en.wikipedia.org/api/rest_v1/page/summary/Earth
 --- !u!4 &454354673 stripped
 Transform:
   m_PrefabParentObject: {fileID: 487518, guid: 87952f75259795a4eb995d77b3e6df93, type: 2}
@@ -2270,7 +2261,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1832577402}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d14dc787dc1ae484cbb3e9a5902c62f6, type: 3}
   m_Name: 

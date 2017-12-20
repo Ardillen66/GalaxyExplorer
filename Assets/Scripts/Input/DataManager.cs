@@ -40,8 +40,8 @@ public class DataManager : Singleton<DataManager>
         IsHidden = true;
         GameObject billboard = ViewLoader.Instance.GetCurrentContent().transform.Find("billboard").gameObject;
         billboard.SetActive(false);
-        hideData.HideOption();
-        showData.ShowOption();
+        //hideData.HideOption();
+        //showData.ShowOption();
     }
 
     /*
@@ -52,8 +52,8 @@ public class DataManager : Singleton<DataManager>
         IsHidden = false;
         GameObject billboard = ViewLoader.Instance.GetCurrentContent().transform.Find("billboard").gameObject;
         billboard.SetActive(true);
-        showData.HideOption();
-        hideData.ShowOption();
+        //showData.HideOption();
+        //hideData.ShowOption();
     }
 
     public void ToggleData()

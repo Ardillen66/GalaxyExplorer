@@ -866,14 +866,10 @@ Prefab:
     - target: {fileID: 114000010164638790, guid: 022450106439a8946ae18a9e20cc92d8,
         type: 2}
       propertyPath: m_Text
-      value: Earth is the third planet from the Sun and the only object in the Universe
-        known to harbor life. According to radiometric dating and other sources of
-        evidence, Earth formed over 4 billion years ago. Earth's gravity interacts
-        with other objects in space, especially the Sun and the Moon, Earth's only
-        natural satellite. Earth revolves around the Sun in 365.26 days, a period
-        known as an Earth year. During this time, Earth rotates about its axis about
-        366.26 times.\nEarth's axis of rotation is tilted, producing seasonal variations
-        on the planet's surface.
+      value: 'Earth is the third planet from the Sun.
+
+        it is the only object in the Universe known to harbor life. According to radiometric
+        dating and other sources of evidence. Earth formed over 4 billion years ago.'
       objectReference: {fileID: 0}
     - target: {fileID: 1000011327985922, guid: 022450106439a8946ae18a9e20cc92d8, type: 2}
       propertyPath: m_Name
@@ -1048,7 +1044,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865828760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d14dc787dc1ae484cbb3e9a5902c62f6, type: 3}
   m_Name: 
@@ -1056,6 +1052,7 @@ MonoBehaviour:
   planetTitle: {fileID: 1251368442}
   descriptionText: {fileID: 1438508245}
   url: https://en.wikipedia.org/api/rest_v1/page/summary/Earth
+  TextSaid: 0
 --- !u!1 &1905502571
 GameObject:
   m_ObjectHideFlags: 0

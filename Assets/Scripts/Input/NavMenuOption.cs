@@ -9,6 +9,9 @@ public enum NavOptionType
 
 }
 
+/*
+ * Class for options in the Navigation menu
+ * */
 public class NavMenuOption : MenuOption
 {
     public NavOptionType type;

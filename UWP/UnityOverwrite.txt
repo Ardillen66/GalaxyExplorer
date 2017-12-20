@@ -5,11 +5,11 @@
 # Write a line equal to 'overwrite-all' (without quotes) to overwrite everything (preserved accross builds)
 # Write a line equal to 'keep-all' (without quotes) to keep files regardless their modification (preserved accross builds)
 # Default behavior is to never overwrite files
-GalaxyExplorer.sln: AA360FFE9783EB8CE9B92C112CD758B4
+GalaxyExplorer.sln: CF5046DBFE9A6513F8C9855AE51A4706
 project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 GalaxyExplorer\App.xaml: 038C3DD99B475FC219603A6A899360C2
 GalaxyExplorer\App.xaml.cs: 398F5F56AEAF9817DA0B8D576A73DB45
-GalaxyExplorer\GalaxyExplorer.csproj: 14E1223469CA3C8F38E9FB3A48D9AF9D
+GalaxyExplorer\GalaxyExplorer.csproj: E627A217B4A96FB97AA6E043C20AB5D0
 GalaxyExplorer\GalaxyExplorer.csproj.user: BEFB8AC4886C4CFDD3C68445D6F19B04
 GalaxyExplorer\MainPage.xaml: 3BB12B25B3FA94FF6859F71392188280
 GalaxyExplorer\MainPage.xaml.cs: FB136B6A23C8D41768DAEEDF130490BA

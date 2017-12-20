@@ -9,22 +9,15 @@ public enum DataOptionType
     SwitchView
 }
 
+/*
+ * Class used for options from the data menu
+ * */
 public class DataMenuOption : MenuOption
 {
     //DataManager data
     public DataOptionType type;
 
     private DataManager Data;
-
-    private void Awake()
-    {
-        
-        if(type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemView")
-        {
-            this.gameObject.SetActive(false);
-        }
-
-    }
 
     public override void Start()
     {
@@ -34,7 +27,20 @@ public class DataMenuOption : MenuOption
         {
             HideOption(); //Data is shown by default, so show button is hidden
         }
-        
+
+        if (type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView != "SolarSystemView")
+        {
+            this.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void Update()
+    {
+        if (type == DataOptionType.SwitchView && ViewLoader.Instance.CurrentView == "SolarSystemView")
+        {
+            this.gameObject.SetActive(true);
+        }
     }
 
 
@@ -44,12 +50,12 @@ public class DataMenuOption : MenuOption
         switch (type)
         {
             case DataOptionType.SelectData:
-                Data.ShowAvailableData();
+                Data.ShowAvailableData(); // Show the available destinations
                 break;
 
             case DataOptionType.HideBillboard:
             case DataOptionType.ShowBillboard:
-                Data.ToggleData();
+                Data.ToggleData(); // Toggle visibility of data
                 break;
 
             case DataOptionType.SwitchView:
@@ -61,6 +67,6 @@ public class DataMenuOption : MenuOption
     private void SwitchView()
     {
         OrbitScalePointOfInterest switchPoi = ViewLoader.Instance.GetCurrentContent().GetComponentInChildren<OrbitScalePointOfInterest>(true);
-        switchPoi.callOrbitSelect();
+        switchPoi.callOrbitSelect(); // We use the POI from original project to switch between realistic and simplified view
     }
 }

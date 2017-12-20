@@ -11,6 +11,9 @@ public enum ToolOptionType
 
 }
 
+/*
+ * Options used in the tools menu
+ * */
 public class ToolMenuOption : MenuOption
 {
     public ToolOptionType toolType;
@@ -22,12 +25,12 @@ public class ToolMenuOption : MenuOption
     private void Awake()
     {
         //TODO find better way to initialize, but we use this method for now
-        if(toolType == ToolOptionType.Grab)
+        if(toolType == ToolOptionType.Grab) // Assign tool if functionality was originally in a tool 
         {
             orButton = gameObject.AddComponent<Button>();
             orButton.type = this.OptionToButton();
         }
-        else
+        else // Otherwise it is a button
         {
             tool = gameObject.AddComponent<Tool>();
             tool.type = this.OptionToTool();
@@ -35,12 +38,14 @@ public class ToolMenuOption : MenuOption
         
     }
 
-
+    /*
+     * Here we just call on the tool or button that contained the requested functionality in th original project
+     * */
     public override void OptionAction()
     {
         if(tool == null)
         {
-            // If there is no tool registerer it must be a button
+            // If there is no tool registered it must be a button
             if(orButton == null)
             {
                 Debug.LogError(this + "No tool or button registered");
@@ -57,6 +62,9 @@ public class ToolMenuOption : MenuOption
         }
     }
 
+    /*
+     * Converts enum types we use in this class to equivalent types in the Tool script from the original project
+     * */
     private ToolType OptionToTool()
     {
         ToolType tType = ToolType.None;
@@ -82,6 +90,9 @@ public class ToolMenuOption : MenuOption
         return tType;
     }
 
+    /*
+     * Coverts from the internally used type enum to the equivalent in the original Button script
+     * */
     private ButtonType OptionToButton()
     {
         ButtonType bType = ButtonType.None;

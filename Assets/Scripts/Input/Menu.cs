@@ -11,6 +11,9 @@ public enum MenuType
     Tools
 }
 
+/*
+ * Class representing a single menu
+ * */
 public class Menu : GazeSelectionTarget, IFadeTarget
 {
     private static bool hasGaze = false;
@@ -29,7 +32,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
 
     public Material DefaultMaterial; // When not looking at it
     private Dictionary<string, float> defaultMaterialDefaults = new Dictionary<string, float>();
-    private GameObject previewText;
+    public GameObject previewText;
     public Material SelectedMaterial; // When pointing at it
     private Dictionary<string, float> selectedMaterialDefaults = new Dictionary<string, float>();
 
@@ -129,27 +132,30 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         {
             HighlightNameColor = new Color(DefaultNameColor.r, DefaultNameColor.g, DefaultNameColor.b); // Same color, but alpha = 1
         }
-        
-    }
 
-    private void Start()
-    {
         // Get all options assigned from unity
         MenuOption[] options = GetComponentsInChildren<MenuOption>(true);
         VoiceCommands = new string[options.Length];
         int idx = 0; //We need to keep track of an array index to add voicecommands
-        foreach(MenuOption option in options)
+        foreach (MenuOption option in options)
         {
-            MenuOptions.Add(option);
-            VoiceCommands[idx++] = option.VoiceCommand;
+            MenuOptions.Add(option); // register option to this menu
+            VoiceCommands[idx++] = option.VoiceCommand; // register voice command for the option
         }
 
-        previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
+    }
+
+    private void Start()
+    {
+        
+
+        //previewText = this.gameObject.transform.Find("UI").Find("UITextPrefab").gameObject; // retrieve the preview text
         previewText.SetActive(false); // Ensure the preview is hidden by default
         
 
     }
 
+    // Unused, supposed to clean up fade attributes
     private void OnDestroy()
     { 
         //clear shader defaults cahce
@@ -306,17 +312,23 @@ public class Menu : GazeSelectionTarget, IFadeTarget
     {
         if (IsNavigating)
         {
+            //Before retrieving new selected option
             if(SelectedOption != null)
             {
                 SelectedOption.RemoveHighlight();
             }
             SelectedOption = GetSelectedOption(relativePosition);
-            SelectedOption.Highlight();
+            if(SelectedOption != null)
+            {
+                SelectedOption.Highlight(); // This stopped working for some reason when we changed GetSelectedOption()
+            }
+            
             return true;
         }
         return false;
     }
 
+    // When the navigation gesture is cleanly finished
     public override bool OnNavigationCompleted(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         HideMenu();
@@ -327,8 +339,14 @@ public class Menu : GazeSelectionTarget, IFadeTarget
             if (SelectedOption == null)
             {
                 SelectedOption = GetSelectedOption(relativePosition);
+
+                //If no option on selected position, gesture handled, but nothing shoul happen
+                if(SelectedOption == null)
+                {
+                    return true;
+                }
             }
-            SelectedOption.OptionAction(); // Perform action from this option
+            SelectedOption.OptionAction(); // Perform action from this option (This does work for some reason)
             SelectedOption.RemoveHighlight();
             
             SelectedOption = null;
@@ -338,6 +356,7 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         return false;
     }
 
+    // When the hand of the user is no longer visible during a navigation gesture
     public override bool OnNavigationCanceled(InteractionSourceKind source, Vector3 relativePosition, Ray ray)
     {
         HideMenu();
@@ -355,6 +374,9 @@ public class Menu : GazeSelectionTarget, IFadeTarget
         return false;
     }
 
+    /*
+     * Delegates voice commands to the appropriate menu option
+     * */
     protected override void VoiceCommandCallback(string command)
     {
         if (!TransitionManager.Instance.InTransition)

@@ -2,6 +2,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/*
+ * This class serves as abtract base class for all types of menu options
+ * provides default methods and abstract ones that should be overridden by subclasses
+ * */
 public abstract class MenuOption : MonoBehaviour
 {
     private static bool Selected = false;
@@ -17,6 +21,7 @@ public abstract class MenuOption : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
+    // Currently unused fader properties
     private float currentOpacity = 1;
 
     public float Opacity
@@ -35,7 +40,7 @@ public abstract class MenuOption : MonoBehaviour
         }
     }
 
-    public string VoiceCommand;// { get; internal set; }
+    public string VoiceCommand; // Every option has one voice command (for now)
     private Bounds objectBounds;
 
     private void ApplyOpacity(Material material, float value)
@@ -71,9 +76,6 @@ public abstract class MenuOption : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.enabled = false; // Always start hidden
-
-        //Mesh mesh = GetComponent<MeshFilter>().mesh;
-        //objectBounds = meshRenderer.bounds;
     }
 
     public bool IsSelected()
@@ -81,11 +83,7 @@ public abstract class MenuOption : MonoBehaviour
         return Selected;
     }
 
-
-    //public Bounds GetBounds()
-    //{
-    //    return objectBounds;
-    //}
+    // Hiding and showing an option when the menu is (un)selected
 
     public void HideOption()
     {
@@ -103,10 +101,14 @@ public abstract class MenuOption : MonoBehaviour
         return meshRenderer.enabled;
     }
 
+    /*
+     * All different types of menu options need to implement this method
+     * When an option is selected from the menu or a voice command is called this method should handle execution
+     * */
     public abstract void OptionAction();
 
     /*
-     * Highlights this option and register as selected
+     * Highlight and unhiglight options during navigation gesture
      * */
     public void Highlight()
     {
